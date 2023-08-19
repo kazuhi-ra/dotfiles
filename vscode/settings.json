@@ -1,0 +1,132 @@
+{
+  "workbench.colorTheme": "Default High Contrast",
+  "workbench.preferredDarkColorTheme": "Tomorrow Night Blue",
+  "workbench.statusBar.visible": true,
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.activityBar.visible": false,
+  "workbench.commandPalette.history": 2000,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.preferredLightColorTheme": "Default High Contrast",
+  "workbench.colorCustomizations": {
+    "terminal.border": "#5c97f0",
+    "editor.lineHighlightBackground": "#00175cc8",
+    "editor.selectionForeground": "#c8c8c870",
+    "editor.selectionBackground": "#088cc06f",
+    "editor.stackFrameHighlightBackground": "#ccdd3267",
+    "editorIndentGuide.activeBackground": "#cec3c362",
+    "editorIndentGuide.background": "#afb5b62f",
+    "diffEditor.removedTextBorder": "#c292db",
+    "diffEditor.insertedTextBorder": "#48c563f5",
+    "terminal.foreground": "#c6c8d1",
+    "terminalCursor.background": "#c6c8d1",
+    "terminalCursor.foreground": "#c6c8d1",
+    "terminal.ansiBrightBlack": "#161722",
+    "terminal.ansiBrightRed": "#f29b9e",
+    "terminal.ansiBrightGreen": "#ccdba0",
+    "terminal.ansiBrightYellow": "#edbe9d",
+    "terminal.ansiBrightBlue": "#a3bee3",
+    "terminal.ansiBrightCyan": "#b6d8de",
+    "terminal.ansiBrightMagenta": "#c8b5e6",
+    "terminal.ansiBrightWhite": "#e9ebf5",
+    "terminal.ansiBlack": "#373757",
+    "terminal.ansiRed": "#e27878",
+    "terminal.ansiGreen": "#b4be82",
+    "terminal.ansiYellow": "#e2a478",
+    "terminal.ansiBlue": "#84a0c6",
+    "terminal.ansiCyan": "#89b8c2",
+    "terminal.ansiMagenta": "#a093c7",
+    "terminal.ansiWhite": "#d0d2db",
+
+    "tab.inactiveForeground": "#ffffff88",
+    "contrastBorder": "#57d5ffa2",
+
+    "editorSuggestWidget.selectedBackground": "#3e0041c8",
+
+    "editorInlayHint.background": "#ff660000",
+    "editorInlayHint.foreground": "#ffffff73"
+  },
+  "editor.fontFamily": "HackGen, Menlo, Monaco, 'Courier New', monospace",
+  "editor.renderWhitespace": "none",
+  "editor.tabSize": 2,
+  "editor.minimap.enabled": false,
+  "editor.suggestSelection": "first",
+  "editor.quickSuggestionsDelay": 1,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.tokenColorCustomizations": {
+    "variables": "#f8f9f1da",
+    "comments": "#796BA7",
+    "functions": "#64c574bd",
+    "keywords": "#dd69add8",
+    "numbers": "#9E76F6",
+    "strings": "#55AAAA",
+    "types": "#cf714f"
+  },
+  "[javascript][typescript][typescriptreact][json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[ruby]": {
+    "editor.defaultFormatter": "jnbt.vscode-rufo"
+  },
+  
+  "eslint.options": {
+    "extensions": [".js", ".jsx", ".mdx", ".ts", ".tsx"]
+  },
+  "eslint.validate": [
+    "mdx",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.tabs.location": "left",
+  "terminal.integrated.tabs.enabled": false,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.shellIntegration.history": 100000,
+  "scm.diffDecorationsGutterWidth": 1,
+  "prettier.semi": false,
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "javascript.format.enable": false,
+  "typescript.format.enable": false,
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "solargraph.formatting": true,
+  "solargraph.commandPath": "/Users/kazuhi-ra/.anyenv/envs/rbenv/shims/solargraph",
+  "solargraph.logLevel": "info",
+  "typeprof.server.path": "/Users/kazuhi-ra/.anyenv/envs/rbenv/shims/typeprof",
+  "yaml.schemas": {
+    "file:///Users/kazuhi-ra/.vscode/extensions/docsmsft.docs-yaml-1.0.0/dist/toc.schema.json": "/toc\\.yml/i"
+  },
+  "files.autoSave": "onFocusChange",
+  "files.insertFinalNewline": true,
+  "vsicons.dontShowNewVersionMessage": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "redhat.telemetry.enabled": false,
+  "extensions.ignoreRecommendations": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": false,
+    "ruby": true,
+    "javascript": true,
+    "typescript": true,
+    "coffeescript": true,
+    "markdown": true
+  },
+  "editor.linkedEditing": true,
+  "editor.fontSize": 12.6,
+  "typescript.preferGoToSourceDefinition": true,
+  "javascript.preferGoToSourceDefinition": true,
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
+  "window.zoomLevel": 1
+}

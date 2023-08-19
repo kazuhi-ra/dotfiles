@@ -1,0 +1,7 @@
+.bin/*/.ssh/known_hosts*
+.bin/*/.config/ghc/ghci_history
+.bin/*/.config/nvim
+.bin/*/.config/DMM
+.bin/*/.config/ghc
+.bin/*/.config/iterm2
+.bin/*/.user.sh

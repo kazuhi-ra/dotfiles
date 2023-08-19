@@ -1,0 +1,3 @@
+function unko() {
+  echo unko
+}
