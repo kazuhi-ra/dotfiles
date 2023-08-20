@@ -2,7 +2,7 @@
 
 ########################## anyenv ##########################
 
-if [ "$(which anyenv)" = "" ]; then
+if [ ! "$(which anyenv)" = "" ]; then
   echo "anyenvを初期化します"
   anyenv install --init
 fi
@@ -27,6 +27,6 @@ if [ "$(which cargo)" = "" ]; then
 fi
 
 ########################## haskell ##########################
-if [ "$(which ghc)" = "" ]; then
-  curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
-fi
+# if [ "$(which ghc)" = "" ]; then
+#   curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+# fi
