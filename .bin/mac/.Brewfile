@@ -23,6 +23,7 @@ brew "rustup-init"
 brew "starship"
 brew "zplug"
 brew "cmake"
+brew "ripgrep"
 
 cask "appcleaner"
 cask "clipy"
