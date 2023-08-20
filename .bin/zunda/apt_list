@@ -10,3 +10,4 @@ zlib1g-dev
 libyaml-dev
 libreadline-dev
 libssl-dev
+ripgrep
