@@ -14,7 +14,7 @@ gui:
   commitLength:
     show: false
 git:
-  colorArg: always
   paging:
-  pager: delta --paging=never
+    colorArg: always
+    pager: delta --paging=never
 quitOnTopLevelReturn: true
