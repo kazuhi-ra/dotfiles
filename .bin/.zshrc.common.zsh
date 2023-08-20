@@ -63,6 +63,18 @@ function chpwd() {
   tree -CL 1
 }
 
+# when enter
+function do_enter() {
+  zle accept-line
+  if [ -z "$BUFFER" ]; then
+    tree -CL 1
+  fi
+}
+
+zle -N do_enter
+bindkey '^m' do_enter
+bindkey '^j' do_enter
+
 # ssh
 if [ -f ~/.ssh-agent ]; then
   . ~/.ssh-agent
