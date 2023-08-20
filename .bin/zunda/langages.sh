@@ -17,6 +17,7 @@ git clone https://github.com/znz/anyenv-update.git "$(anyenv root)/plugins/anyen
 anyenv update
 
 ########################## brewで入れたrustup-init ##########################
+
 if [ "$(which cargo)" = "" ]; then
   rustup-init
 fi
@@ -30,12 +31,12 @@ fi
 
 ########################## install lang ##########################
 
-if [ ! "$(which node)" = "" ]; then
+if [ "$(which node)" = "" ]; then
   nodenv install 20.5.1
   nodenv global 20.5.1
 fi
 
-if [ ! "$(which ruby)" = "" ]; then
+if [ "$(which ruby)" = "" ]; then
   rbenv install 3.2.2
   rbenv global 3.2.2
 fi
