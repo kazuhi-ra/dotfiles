@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo init.sh
+chsh -s "$(which zsh)"

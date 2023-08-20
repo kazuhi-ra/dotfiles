@@ -71,8 +71,6 @@ eval "$(anyenv init -)"
 
 eval "$(starship init zsh)"
 
-export ZPLUG_HOME=$HOMEBREW_PREFIX/opt/zplug
-source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
 if ! zplug check --verbose; then

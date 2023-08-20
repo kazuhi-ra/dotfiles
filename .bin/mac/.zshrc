@@ -19,4 +19,8 @@ ssh-add -l &>/dev/null || ssh-add
 # PUPPETEER M1 bug
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
+# zplug
+export ZPLUG_HOME=$HOMEBREW_PREFIX/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
 source $HOME/.zshrc.common.zsh
