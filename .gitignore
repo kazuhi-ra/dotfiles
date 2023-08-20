@@ -1,4 +1,6 @@
 .bin/*/.ssh/known_hosts*
+.bin/*/.ssh/*.pub
+.bin/*/.ssh/github
 .bin/*/.config/ghc/ghci_history
 .bin/*/.config/nvim
 .bin/*/.config/DMM

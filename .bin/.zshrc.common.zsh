@@ -57,13 +57,23 @@ alias reload="exec $SHELL -l"
 alias v="nvim"
 alias vi="nvim"
 alias f="fg"
-alias zunda="ssh zunda"
 alias ..="cd .."
 alias ...="cd ../.."
 
 function chpwd() {
   tree -CL 1
 }
+
+# ssh
+if [ -f ~/.ssh-agent ]; then
+  . ~/.ssh-agent
+fi
+if [ -z "$SSH_AGENT_PID" ] || ! kill -0 $SSH_AGENT_PID; then
+  ssh-agent >~/.ssh-agent
+  . ~/.ssh-agent
+fi
+ssh-add -l &>/dev/null || ssh-add
+
 
 # anyenv
 eval "$(anyenv init -)"

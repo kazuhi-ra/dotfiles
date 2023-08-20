@@ -6,15 +6,7 @@ fi
 # ghcup-env
 [ -f "/Users/kazuhi-ra/.ghcup/env" ] && source "/Users/kazuhi-ra/.ghcup/env"
 
-# ssh
-if [ -f ~/.ssh-agent ]; then
-  . ~/.ssh-agent
-fi
-if [ -z "$SSH_AGENT_PID" ] || ! kill -0 $SSH_AGENT_PID; then
-  ssh-agent >~/.ssh-agent
-  . ~/.ssh-agent
-fi
-ssh-add -l &>/dev/null || ssh-add
+alias zunda="ssh zunda"
 
 # PUPPETEER M1 bug
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
