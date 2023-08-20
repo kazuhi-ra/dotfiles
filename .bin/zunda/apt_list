@@ -6,3 +6,7 @@ bat
 peco
 cmake
 gettext
+zlib1g-dev
+libyaml-dev
+libreadline-dev
+libssl-dev

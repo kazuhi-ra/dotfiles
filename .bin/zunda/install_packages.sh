@@ -21,6 +21,7 @@ fi
 
 if [ "$(which anyenv)" = "" ]; then
   git clone https://github.com/anyenv/anyenv ~/.anyenv 
+  anyenv install --init
 fi
 
 if [ "$(which rustup)" = "" ]; then

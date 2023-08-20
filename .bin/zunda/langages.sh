@@ -2,11 +2,6 @@
 
 ########################## anyenv ##########################
 
-if [ ! "$(which anyenv)" = "" ]; then
-  echo "anyenvを初期化します"
-  anyenv install --init
-fi
-
 if [ "$(which nodenv)" = "" ]; then
   echo "nodenvをインストールします"
   anyenv install nodenv
@@ -30,3 +25,17 @@ fi
 # if [ "$(which ghc)" = "" ]; then
 #   curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 # fi
+
+
+
+########################## install lang ##########################
+
+if [ ! "$(which node)" = "" ]; then
+  nodenv install 20.5.1
+  nodenv global 20.5.1
+fi
+
+if [ ! "$(which ruby)" = "" ]; then
+  rbenv install 3.2.2
+  rbenv global 3.2.2
+fi
