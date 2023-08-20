@@ -34,8 +34,3 @@ plus-emph-style = normal "#166827"
 plus-style = syntax "#12442a"
 line-numbers-plus-style = "#148e2f"
 
-side-by-side = true
-syntax-theme = Vibrant Sunburst
-
-[include]
-path = ~/workspace/github.com/dandavison/delta/themes.gitconfig
