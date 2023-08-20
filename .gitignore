@@ -7,3 +7,4 @@
 .bin/*/.config/ghc
 .bin/*/.config/iterm2
 .bin/*/.user.sh
+.bin/*/.config/lazygit/state.yml
