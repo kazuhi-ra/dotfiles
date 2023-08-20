@@ -3,6 +3,7 @@ autoload -Uz colors && colors
 
 HISTSIZE=100000
 SAVEHIST=100000
+HISTORY_FILE=$HOME/.zsh_history
 setopt append_history
 setopt share_history
 setopt hist_ignore_all_dups
@@ -12,8 +13,6 @@ bindkey -e
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
-bindkey "^[[A" history-beginning-search-backward-end
-bindkey "^[[B" history-beginning-search-forward-end
 
 # cdr
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then

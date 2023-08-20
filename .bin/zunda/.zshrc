@@ -6,3 +6,6 @@ export PATH=$PATH:$GOBIN
 source $HOME/.zplug/init.zsh
 
 source $HOME/.zshrc.common.zsh
+
+bindkey "^[OA" history-beginning-search-backward-end
+bindkey "^[OB" history-beginning-search-forward-end
