@@ -50,8 +50,8 @@ zle -N peco-ghq-look
 bindkey '^G' peco-ghq-look
 
 alias l="ls -alF -G"
-alias t="tree -CL 2 -I node_modules"
-alias tt="tree -aCL 2 -I node_modules"
+alias t="tree -ACL 2 -I node_modules"
+alias tt="tree -aACL 2 -I node_modules"
 alias reload="exec $SHELL -l"
 alias v="nvim"
 alias vi="nvim"
@@ -60,14 +60,14 @@ alias ..="cd .."
 alias ...="cd ../.."
 
 function chpwd() {
-  tree -CL 1
+  tree -ACL 1
 }
 
 # when enter
 function do_enter() {
   zle accept-line
   if [ -z "$BUFFER" ]; then
-    tree -CL 1
+    tree -ACL 1
   fi
 }
 
