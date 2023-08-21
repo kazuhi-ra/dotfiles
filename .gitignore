@@ -6,5 +6,5 @@
 .bin/*/.config/DMM
 .bin/*/.config/ghc
 .bin/*/.config/iterm2
-.bin/*/.user.sh
+.bin/*/.user.zsh
 .bin/*/.config/lazygit/state.yml
