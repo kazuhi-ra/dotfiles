@@ -93,6 +93,14 @@
                     "key_code": "right_arrow"
                   }
                 ],
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^(?!.*(Terminal|iterm2)).+$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -115,6 +123,14 @@
                 "to": [
                   {
                     "key_code": "up_arrow"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^(?!.*(Terminal|iterm2)).+$"
+                    ],
+                    "type": "frontmost_application_if"
                   }
                 ],
                 "type": "basic"
@@ -141,6 +157,14 @@
                     "key_code": "down_arrow"
                   }
                 ],
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^(?!.*(Terminal|iterm2)).+$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -163,6 +187,14 @@
                 "to": [
                   {
                     "key_code": "left_arrow"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^(?!.*(Terminal|iterm2)).+$"
+                    ],
+                    "type": "frontmost_application_if"
                   }
                 ],
                 "type": "basic"
@@ -217,6 +249,14 @@
                     ]
                   }
                 ],
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^(?!.*(Terminal|iterm2)).+$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -242,6 +282,14 @@
                     "modifiers": [
                       "shift"
                     ]
+                  }
+                ],
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^(?!.*(Terminal|iterm2)).+$"
+                    ],
+                    "type": "frontmost_application_if"
                   }
                 ],
                 "type": "basic"
@@ -272,6 +320,14 @@
                     ]
                   }
                 ],
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^(?!.*(Terminal|iterm2)).+$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
                 "type": "basic"
               }
             ]
@@ -297,6 +353,14 @@
                     "modifiers": [
                       "shift"
                     ]
+                  }
+                ],
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^(?!.*(Terminal|iterm2)).+$"
+                    ],
+                    "type": "frontmost_application_if"
                   }
                 ],
                 "type": "basic"
