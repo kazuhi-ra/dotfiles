@@ -343,5 +343,15 @@
     "key": "backspace",
     "command": "workbench.view.explorer",
     "when": "editorFocus && neovim.mode == 'normal'"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "deleteLeft",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+backspace",
+    "command": "-deleteLeft",
+    "when": "textInputFocus"
   }
 ]
