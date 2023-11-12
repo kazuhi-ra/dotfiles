@@ -49,5 +49,6 @@ return {
 	keys = {
 		{ key = "Tab", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action.DisableDefaultAssignment },
+		{ key = "w", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
 	},
 }
