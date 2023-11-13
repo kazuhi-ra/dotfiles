@@ -8,6 +8,8 @@ return {
 
 	-- window
 	window_background_opacity = 0.8,
+	initial_rows = 100,
+	initial_cols = 400,
 
 	-- theme
 	color_scheme = "zenbones_dark",
