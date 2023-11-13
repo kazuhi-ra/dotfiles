@@ -24,6 +24,7 @@ brew "starship"
 brew "zplug"
 brew "cmake"
 brew "ripgrep"
+brew "neofetch"
 
 cask "appcleaner"
 cask "clipy"
