@@ -8,3 +8,4 @@
 .bin/*/.config/iterm2
 .bin/*/.user.zsh
 .bin/*/.config/lazygit/state.yml
+.bin/*/.config/anyenv/anyenv-install
