@@ -53,6 +53,7 @@ return {
 		{ key = "Tab", mods = "CTRL",       action = wezterm.action.DisableDefaultAssignment },
 		{ key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "w",   mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
+		{ key = "q",   mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
 
 		-- session の作成, 移動
 		{ key = "t",   mods = "CMD",        action = wezterm.action.SendString("\027t") },
@@ -65,7 +66,8 @@ return {
 		{ key = "h",   mods = "CMD",        action = wezterm.action.SendString("\027h") },
 		{ key = "l",   mods = "CMD",        action = wezterm.action.SendString("\027l") },
 
-		-- kill session
+		-- kill
 		{ key = "w",   mods = "CMD",        action = wezterm.action.SendString("\027w") },
+		{ key = "q",   mods = "CMD",        action = wezterm.action.SendString("\027q") },
 	},
 }
