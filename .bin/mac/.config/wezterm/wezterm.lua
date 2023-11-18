@@ -10,6 +10,7 @@ return {
 	window_background_opacity = 0.8,
 	initial_rows = 100,
 	initial_cols = 400,
+	hide_tab_bar_if_only_one_tab = true,
 
 	-- theme
 	color_scheme = "zenbones_dark",
@@ -49,8 +50,22 @@ return {
 
 	-- key
 	keys = {
-		{ key = "Tab", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
+		{ key = "Tab", mods = "CTRL",       action = wezterm.action.DisableDefaultAssignment },
 		{ key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action.DisableDefaultAssignment },
-		{ key = "w", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
+		{ key = "w",   mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
+
+		-- session の作成, 移動
+		{ key = "t",   mods = "CMD",        action = wezterm.action.SendString("\027t") },
+		{ key = "j",   mods = "CMD",        action = wezterm.action.SendString("\027j") },
+		{ key = "k",   mods = "CMD",        action = wezterm.action.SendString("\027k") },
+		{ key = "a",   mods = "CMD",        action = wezterm.action.SendString("\027a") },
+
+		-- window の作成, 移動
+		{ key = "t",   mods = "CMD|SHIFT", action = wezterm.action.SendString("\027T") },
+		{ key = "h",   mods = "CMD",        action = wezterm.action.SendString("\027h") },
+		{ key = "l",   mods = "CMD",        action = wezterm.action.SendString("\027l") },
+
+		-- kill session
+		{ key = "w",   mods = "CMD",        action = wezterm.action.SendString("\027w") },
 	},
 }
