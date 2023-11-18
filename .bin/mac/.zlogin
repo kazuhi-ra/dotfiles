@@ -1,4 +1,3 @@
-neofetch
 # tmuxが起動していないかつ、SSH接続でもない場合にのみtmuxを起動
 if [[ -z "$TMUX" && -z "$SSH_CONNECTION" ]]; then
   # 既存のtmuxセッションがある場合、それに接続
