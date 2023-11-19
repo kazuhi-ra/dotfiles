@@ -73,7 +73,7 @@ bindkey '^G' peco-ghq-look
 alias l="ls -alF -G"
 alias t="tree -ACL 2 -I node_modules"
 alias tt="tree -aACL 2 -I node_modules"
-alias reload="exec $SHELL -l && tmux source-file ~/.tmux.conf"
+alias reload="tmux source-file ~/.tmux.conf && exec $SHELL -l"
 alias e="exit"
 alias v="nvim"
 alias vi="nvim"
