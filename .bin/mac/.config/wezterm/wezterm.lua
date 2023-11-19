@@ -7,7 +7,6 @@ return {
 	font_size = 16.0,
 
 	-- window
-	window_background_opacity = 0.8,
 	initial_rows = 100,
 	initial_cols = 400,
 	hide_tab_bar_if_only_one_tab = true,
