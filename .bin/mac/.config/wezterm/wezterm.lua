@@ -58,7 +58,6 @@ return {
 		{ key = "t", mods = "CMD|SHIFT", action = wezterm.action.SendString("\027T") },
 		{ key = "j", mods = "CMD", action = wezterm.action.SendString("\027j") },
 		{ key = "k", mods = "CMD", action = wezterm.action.SendString("\027k") },
-		{ key = "a", mods = "CMD", action = wezterm.action.SendString("\027a") },
 
 		-- window の作成, 移動
 		{ key = "t", mods = "CMD", action = wezterm.action.SendString("\027t") },
