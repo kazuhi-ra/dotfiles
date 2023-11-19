@@ -54,7 +54,7 @@ function peco-ghq-look() {
 
     if [[ $current_session =~ ^[0-9]+$ ]]; then
       cd $dir
-      tmux rename-session $session && disown
+      tmux rename-session $session
     else
       tmux list-sessions | cut -d":" -f1 | grep -e "^$session\$" > /dev/null
       if [[ $? != 0 ]]; then
@@ -62,6 +62,7 @@ function peco-ghq-look() {
       fi
       tmux switch-client -t $session
     fi
+    tmux send-keys -t $session 'nvim' Enter
   else
     cd $dir
   fi
