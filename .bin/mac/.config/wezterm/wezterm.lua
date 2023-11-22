@@ -8,7 +8,7 @@ return {
 
 	-- window
 	initial_rows = 100,
-	initial_cols = 400,
+	initial_cols = 260,
 	hide_tab_bar_if_only_one_tab = true,
 
 	-- theme
