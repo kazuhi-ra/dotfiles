@@ -7,6 +7,7 @@ tap "homebrew/core"
 tap "homebrew/cask-fonts"
 
 brew "git"
+brew "tmux"
 brew "anyenv"
 brew "ruby-build"
 brew "libyaml"
