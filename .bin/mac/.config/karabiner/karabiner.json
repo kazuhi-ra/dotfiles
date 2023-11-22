@@ -150,18 +150,18 @@
                 "from": {
                   "key_code": "m",
                   "modifiers": {
-                    "mandatory": ["control"],
-                    "optional": ["any"]
+                    "mandatory": ["control"]
                   }
                 },
                 "to": [
                   {
-                    "key_code": "left_arrow"
+                    "key_code": "b",
+                    "modifiers": ["control"]
                   }
                 ],
                 "conditions": [
                   {
-                    "bundle_identifiers": ["^(?!.*(Terminal|iterm2|wezterm)).+$"],
+                    "bundle_identifiers": ["^(?!.*(Terminal|iterm2)).+$"],
                     "type": "frontmost_application_if"
                   }
                 ],
