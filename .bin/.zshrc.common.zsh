@@ -71,16 +71,17 @@ function peco-ghq-look() {
 zle -N peco-ghq-look
 bindkey '^G' peco-ghq-look
 
-alias l="ls -alF -G"
 alias t="tree -ACL 2 -I node_modules"
 alias tt="tree -aACL 2 -I node_modules"
-alias reload="tmux source-file ~/.config/tmux/tmux.conf && exec $SHELL -l"
+alias b="bat"
 alias e="exit"
+alias f="fg"
+alias l="ls -alF -G"
+alias r="tmux source-file ~/.config/tmux/tmux.conf && exec $SHELL -l"
 alias v="nvim"
 alias vi="nvim"
 alias x="tmux"
 alias xx="tmux kill-server"
-alias f="fg"
 alias ..="cd .."
 alias ...="cd ../.."
 
