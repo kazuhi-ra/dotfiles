@@ -17,6 +17,8 @@ return {
 	-- tab bar
 	use_fancy_tab_bar = false,
 	colors = {
+		background = 'black',
+
 		cursor_bg = "#c6c8d1",
 		tab_bar = {
 			background = "#1b1f2f",
