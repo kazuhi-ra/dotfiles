@@ -4,6 +4,9 @@
 NVIM_REPO="neovim/neovim"
 ghq get "git@github.com:${NVIM_REPO}.git"
 
+ASTRO_NVIM_REPO="AstroNvim/AstroNvim"
+ghq get "git@github.com:${ASTRO_NVIM_REPO}.git"
+
 USER_REPO="kazuhi-ra/nvim-user"
 ghq get "git@github.com:${USER_REPO}.git"
 
@@ -14,9 +17,10 @@ if [ "$(which nvim)" = "" ]; then
   sudo make install
 fi
 
-# AstroNvimをinstall
+# AstroNvimを.config/nvimにlink
 if [ ! -d ~/.config/nvim ]; then
-  git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+  ASTRO_NVIM_PATH="$(ghq list --full-path | grep --color=never -E "${ASTRO_NVIM_REPO}")"
+  ln -fnsv "$ASTRO_NVIM_PATH" "${HOME}/.config/nvim"
 fi
 
 # ~/.config/nvim/lua/user にlink
