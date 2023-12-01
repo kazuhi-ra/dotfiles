@@ -66,6 +66,9 @@ return {
 		{ key = "h", mods = "CMD", action = wezterm.action.SendString("\027h") },
 		{ key = "l", mods = "CMD", action = wezterm.action.SendString("\027l") },
 
+		-- sessionの一覧
+		{ key = "s", mods = "CMD", action = wezterm.action.SendString("\027s") },
+
 		-- kill
 		{ key = "w", mods = "CMD", action = wezterm.action.SendString("\027w") },
 		{ key = "q", mods = "CMD", action = wezterm.action.SendString("\027q") },
