@@ -4,7 +4,7 @@ return {
 	font = wezterm.font_with_fallback({
 		{ family = "HackGen Console NF", weight = "Regular" },
 	}),
-	font_size = 16.0,
+	font_size = 13.0,
 
 	-- window
 	initial_rows = 100,
@@ -17,7 +17,7 @@ return {
 	-- tab bar
 	use_fancy_tab_bar = false,
 	colors = {
-		background = 'black',
+		background = "black",
 
 		cursor_bg = "#c6c8d1",
 		tab_bar = {
@@ -55,6 +55,10 @@ return {
 		{ key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "w", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "q", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
+		{ key = "LeftArrow", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
+		{ key = "RightArrow", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
+		{ key = "LeftArrow", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
+		{ key = "RightArrow", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
 
 		-- session の作成, 移動
 		{ key = "t", mods = "CMD|SHIFT", action = wezterm.action.SendString("\027T") },
