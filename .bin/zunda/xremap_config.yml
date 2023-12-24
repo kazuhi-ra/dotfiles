@@ -59,6 +59,7 @@ keymap:
 
       # 削除
       SUPER-h: Backspace
+      SUPER-w: C-Backspace
       SUPER-Backspace: C-Backspace
       SUPER-Delete: C-Delete
       ALT-Backspace: C-Backspace
