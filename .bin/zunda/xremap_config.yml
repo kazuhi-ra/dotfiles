@@ -1,3 +1,5 @@
+keypress_delay_ms: 20
+
 modmap:
   - name: SandS
     remap:
@@ -11,9 +13,9 @@ modmap:
     remap:
       CapsLock: Tab
       ALT_L: [SUPER_L, Muhenkan]
-      ALT_R: [Ctrl_R, Henkan]
+      ALT_R: Ctrl_R
       SUPER_L: ALT_L
-      CTRL_R: ALT_L
+      CTRL_R: [ALT_L, Henkan]
 
   - name: ThinkPad
     device:
@@ -22,10 +24,19 @@ modmap:
       not: wezterm
     remap:
       CapsLock: Tab
-      ALT_L: CTRL_R
+      ALT_L: [CTRL_R, Muhenkan]
       ALT_R:  SUPER_L
       SUPER_L: ALT_L
-      CTRL_R: ALT_L
+      CTRL_R: [ALT_L, Henkan]
+
+  - name: Kinesis(only wezterm)
+    device:
+      only: 'Kinesis Advantage2 Keyboard'
+    application:
+      only: wezterm
+    remap:
+      ALT_R: [ALT_R, Henkan]
+      SUPER_L: [SUPER_L, Muhenkan]
 
   - name: Kinesis
     device:
@@ -33,7 +44,8 @@ modmap:
     application:
       not: wezterm
     remap:
-      SUPER_L: CTRL_R
+      ALT_R: [ALT_R, Henkan]
+      SUPER_L: [CTRL_R, Muhenkan]
       CTRL_L:  SUPER_L
 
 keymap:
@@ -48,6 +60,7 @@ keymap:
       SUPER-n: Down
       SUPER-p: Up
       SUPER-d: Delete
+      SUPER-j: Enter
 
       # 選択
       CONTROL_R-SHIFT-Left: SHIFT-Home
