@@ -9,3 +9,5 @@ source $HOME/.zshrc.common.zsh
 
 bindkey "^[OA" history-beginning-search-backward-end
 bindkey "^[OB" history-beginning-search-forward-end
+
+xset r rate 225 30
