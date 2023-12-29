@@ -50,6 +50,8 @@ modmap:
 
 keymap:
   - name: Default
+    application:
+      not: wezterm
     remap:
       # 移動
       SUPER-a: Home
@@ -78,6 +80,13 @@ keymap:
       ALT-Backspace: C-Backspace
       CONTROL_R-Backspace: C-SHIFT-Backspace
       ALT-Delete: C-Delete
+
+  - name: Wezterm
+    application:
+      only: wezterm
+    remap:
+      CTRL-m: CTRL-b
+      Esc: [Esc, Muhenkan]
 
   - name: Switch App
     application:
