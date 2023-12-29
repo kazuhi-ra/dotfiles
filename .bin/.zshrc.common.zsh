@@ -3,7 +3,7 @@ autoload -Uz colors && colors
 
 HISTSIZE=100000
 SAVEHIST=100000
-HISTORY_FILE=$HOME/.zsh_history
+HISTFILE=$HOME/.zsh_history
 setopt append_history
 setopt share_history
 setopt hist_ignore_all_dups
