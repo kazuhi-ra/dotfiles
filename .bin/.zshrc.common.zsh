@@ -71,9 +71,9 @@ function peco-ghq-look() {
 zle -N peco-ghq-look
 bindkey '^G' peco-ghq-look
 
+alias b="batcat"
 alias t="tree -ACL 2 -I node_modules"
 alias tt="tree -aACL 2 -I node_modules"
-alias b="bat"
 alias e="exit"
 alias f="fg"
 alias d="docker"
