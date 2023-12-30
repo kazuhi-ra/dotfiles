@@ -27,6 +27,7 @@ fi
 echo "anyenv"
 if [ "$(which anyenv)" = "" ]; then
   git clone https://github.com/anyenv/anyenv ~/.anyenv 
+  cd ~/.anyenv || exit
   anyenv install --init
 fi
 
