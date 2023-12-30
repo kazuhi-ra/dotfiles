@@ -11,3 +11,5 @@ bindkey "^[OA" history-beginning-search-backward-end
 bindkey "^[OB" history-beginning-search-forward-end
 
 xset r rate 225 30
+
+[ -f "~/.ghcup/env" ] && source "~/.ghcup/env"
