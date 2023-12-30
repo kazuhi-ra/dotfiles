@@ -26,11 +26,11 @@ anyenv update
 ########################## install lang ##########################
 
 if [ "$(which node)" = "" ]; then
-  nodenv install 20.5.1
-  nodenv global 20.5.1
+  nodenv install 20.10.0
+  nodenv global 20.10.0
 fi
 
 if [ "$(which ruby)" = "" ]; then
-  rbenv install 3.2.2
-  rbenv global 3.2.2
+  rbenv install 3.3.0
+  rbenv global 3.3.0
 fi
