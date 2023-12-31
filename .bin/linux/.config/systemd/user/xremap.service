@@ -3,7 +3,7 @@ Description=xremap
 
 [Service]
 Restart=always
-ExecStart=/home/kazuhira/.cargo/bin/xremap /home/kazuhira/workspace/github.com/kazuhi-ra/dotfiles/.bin/zunda/xremap_config.yml
+ExecStart=/home/kazuhira/.cargo/bin/xremap /home/kazuhira/workspace/github.com/kazuhi-ra/dotfiles/.bin/linux/xremap_config.yml
 Environment="DISPLAY=:0"
 
 [Install]
