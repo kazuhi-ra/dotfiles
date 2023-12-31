@@ -8,7 +8,7 @@ eval ".bin/${HOST_NAME}/link.sh"
 
 eval ".bin/${HOST_NAME}/install_packages.sh"
 
-eval ".bin/${HOST_NAME}/langages.sh"
+eval ".bin/${HOST_NAME}/languages.sh"
 
 eval ".bin/${HOST_NAME}/editor.sh"
 
