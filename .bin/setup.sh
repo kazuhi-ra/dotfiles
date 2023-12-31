@@ -1,6 +1,10 @@
 #!/bin/bash
 
-HOST_NAME=$(hostname -s) # mac | zunda
+if [ "$(uname)" = "Darwin" ]; then
+  HOST_NAME="mac"
+elif [ "$(uname)" = "Linux" ]; then
+  HOST_NAME="linux"
+fi
 
 eval ".bin/${HOST_NAME}/init.sh"
 
