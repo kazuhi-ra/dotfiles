@@ -28,11 +28,7 @@ for dir in "${SCRIPT_DIRS[@]}"; do
       mkdir -p "$target_dir"
 
       for file in "$dotfile"/*; do
-        if [[ -d "$file" ]]; then
-          ln -fnsv "$file" "$target_dir"
-        else
-          ln -fnsv "$dotfile" "$target_dir"
-        fi
+        ln -fnsv "$file" "$target_dir"
       done
     elif [[ -f "$dotfile" ]]; then
       ln -fnsv "$dotfile" "$HOME"
