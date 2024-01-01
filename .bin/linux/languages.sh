@@ -2,6 +2,9 @@
 
 ########################## anyenv ##########################
 
+source ~/.zshrc
+anyenv install --init
+
 if [ "$(which nodenv)" = "" ]; then
   echo "nodenvをインストールします"
   anyenv install nodenv

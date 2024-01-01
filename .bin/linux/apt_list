@@ -18,6 +18,7 @@ libncurses5-dev
 libreadline-dev
 libssl-dev
 libyaml-dev
+mozc-utils-gui
 neofetch
 peco
 pkg-config

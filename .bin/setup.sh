@@ -6,8 +6,6 @@ elif [ "$(uname)" = "Linux" ]; then
   HOST_NAME="linux"
 fi
 
-eval ".bin/${HOST_NAME}/init.sh"
-
 eval ".bin/${HOST_NAME}/link.sh"
 
 eval ".bin/${HOST_NAME}/install_packages.sh"
