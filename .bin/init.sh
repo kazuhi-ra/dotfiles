@@ -7,5 +7,6 @@ elif [ "$(uname)" = "Linux" ]; then
 fi
 
 eval ".bin/${HOST_NAME}/init.sh"
+eval ".bin/${HOST_NAME}/link.sh"
 
 echo "次はsshの設定をしましょう。"
