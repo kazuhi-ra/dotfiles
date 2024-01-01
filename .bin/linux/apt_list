@@ -14,6 +14,7 @@ ibus-mozc
 libreadline-dev
 libssl-dev
 libyaml-dev
+neofetch
 peco
 ripgrep
 tmux
