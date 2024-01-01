@@ -30,8 +30,7 @@ mozcに設定ファイルをimport
 sudo reboot
 ```
 
-1passwordでsshの設定 & ↓で確認
-手動でzshに切り替える必要があるかも
+1passwordでsshの設定 & ↓で確認(手動でzshに切り替える必要があるかも)
 
 ```sh
 ssh -T git@github.com
