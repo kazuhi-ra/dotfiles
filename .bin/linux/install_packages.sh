@@ -24,6 +24,12 @@ if [ "$(which lazygit)" = "" ]; then
   sudo install lazygit /usr/local/bin
 fi
 
+echo "wezterm"
+if [ "$(which wezterm)" = "" ]; then
+  curl -LO https://github.com/wez/wezterm/releases/download/20230712-072601-f4abf8fd/wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
+  sudo apt install ./wezterm-20230712-072601-f4abf8fd.Ubuntu20.04.deb
+fi
+
 echo "tmux"
 if [ "$(which tmux)" = "" ]; then
   ghq get -shallow git@github.com:tmux/tmux.git
