@@ -56,6 +56,11 @@ if [ "$(which delta)" = "" ]; then
   cargo install git-delta
 fi
 
+echo "xremap"
+if [ "$(which xrempa)" = "" ]; then
+  cargo install xremap --features x11
+fi
+
 echo "ZPLUG"
 if [ "$ZPLUG_HOME" = "" ]; then
   curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
