@@ -9,3 +9,5 @@
 .bin/*/.user.zsh
 .bin/*/.config/lazygit/state.yml
 .bin/*/.config/anyenv
+lazygit*
+wezterm-*

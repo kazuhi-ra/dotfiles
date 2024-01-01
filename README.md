@@ -2,24 +2,28 @@
 
 ## 手順
 
-apt更新
+必要なパッケージを入れる
 
 ```sh
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade && sudo apt install -y git curl
 ```
 
 clone
 
 ```sh
-sudo apt install -y git curl
 mkdir -p ~/workspace/github.com/kazuhi-ra && git clone https://github.com/kazuhi-ra/dotfiles.git ~/workspace/github.com/kazuhi-ra/dotfiles
 ```
 
-セットアップコマンド実行
+下ごしらえ
 
 ```bash
-cd workspace/github.com/kazuhi-ra/dotfiles
-.bin/setup.sh
+cd ~/workspace/github.com/kazuhi-ra/dotfiles && .bin/init.sh
+```
+
+1passwordでsshの設定 & ↓で確認
+
+```bash
+ssh -T git@github.com
 ```
 
 mozcに設定ファイルをimport
@@ -30,6 +34,12 @@ https -> ssh
 
 ```sh
 git remote set-url origin git@github.com:kazuhi-ra/dotfiles.git
+```
+
+セットアップコマンド実行
+
+```bash
+.bin/setup.sh
 ```
 
 ## 仕事マシン向けメモ

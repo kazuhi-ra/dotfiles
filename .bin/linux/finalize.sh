@@ -1,5 +1,7 @@
 # gnome tweaks
-dconf load / < dconf-backup.ini
+dconf load / < ./.bin/linux/dconf-backup.ini
+
+chsh -s "$(which zsh)"
 
 # systemd
 systemctl --user daemon-reload

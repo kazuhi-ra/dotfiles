@@ -1,11 +1,5 @@
 #!/bin/bash
 
-
-echo "apt install"
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)/apt_list"
-
-xargs sudo apt install -y <"${SCRIPT_DIR}"
-
 echo "starship"
 if [ "$(which starship)" = "" ]; then
   curl -sS https://starship.rs/install.sh | sh -s -- -y
@@ -27,7 +21,7 @@ fi
 echo "wezterm"
 if [ "$(which wezterm)" = "" ]; then
   curl -LO https://github.com/wez/wezterm/releases/download/20230712-072601-f4abf8fd/wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
-  sudo apt install ./wezterm-20230712-072601-f4abf8fd.Ubuntu20.04.deb
+  sudo apt install ./wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
 fi
 
 echo "tmux"
@@ -43,7 +37,6 @@ echo "anyenv"
 if [ "$(which anyenv)" = "" ]; then
   git clone https://github.com/anyenv/anyenv ~/.anyenv 
   cd ~/.anyenv || exit
-  anyenv install --init
 fi
 
 echo "rustup"
