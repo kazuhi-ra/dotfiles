@@ -2,6 +2,12 @@
 
 ## 手順
 
+apt更新
+
+```sh
+sudo apt update && sudo apt upgrade
+```
+
 clone
 
 ```sh
@@ -11,6 +17,7 @@ mkdir -p ~/workspace/github.com/kazuhi-ra && git clone https://github.com/kazuhi
 セットアップコマンド実行
 
 ```bash
+cd workspace/github.com/kazuhi-ra/dotfiles
 .bin/setup.sh
 ```
 
