@@ -56,11 +56,6 @@ if [ "$(which delta)" = "" ]; then
   cargo install git-delta
 fi
 
-echo "difftastic"
-if [ "$(which difft)" = "" ]; then
-  cargo install --locked difftastic
-fi
-
 echo "ZPLUG"
 if [ "$ZPLUG_HOME" = "" ]; then
   curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
