@@ -11,7 +11,7 @@ sudo apt update && sudo apt upgrade
 clone
 
 ```sh
-sudo apt install git
+sudo apt install git curl
 mkdir -p ~/workspace/github.com/kazuhi-ra && git clone https://github.com/kazuhi-ra/dotfiles.git ~/workspace/github.com/kazuhi-ra/dotfiles
 ```
 
