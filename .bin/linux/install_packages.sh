@@ -24,6 +24,15 @@ if [ "$(which lazygit)" = "" ]; then
   sudo install lazygit /usr/local/bin
 fi
 
+echo "tmux"
+if [ "$(which tmux)" = "" ]; then
+  ghq get -shallow git@github.com:tmux/tmux.git
+  cd "$(ghq list --full-path | grep --color=never -E tmux/tmux)" || exit
+  cd tmux
+  sh autogen.sh
+  ./configure && make
+fi
+
 echo "anyenv"
 if [ "$(which anyenv)" = "" ]; then
   git clone https://github.com/anyenv/anyenv ~/.anyenv 
