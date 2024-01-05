@@ -50,7 +50,7 @@ if [ "$(which delta)" = "" ]; then
 fi
 
 echo "xremap"
-if [ "$(which xrempa)" = "" ]; then
+if [ "$(which xremap)" = "" ]; then
   cargo install xremap --features x11
 fi
 
