@@ -48,6 +48,9 @@ if [ "$(which docker)" = "" ]; then
 
   # install docker packages
   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+  # add user docker group
+  sudo usermod -aG docker ${USER}
 fi
 
 # apt install
