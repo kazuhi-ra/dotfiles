@@ -27,6 +27,11 @@ if [ "$(which ulauncher)" = "" ]; then
   sudo add-apt-repository universe -y && sudo add-apt-repository ppa:agornostal/ulauncher -y
 fi
 
+# ulauncher
+if [ "$(which go)" = "" ]; then
+  sudo add-apt-repository ppa:longsleep/golang-backports
+fi
+
 if [ "$(which docker)" = "" ]; then
   # Add Docker's official GPG key:
   sudo apt-get install ca-certificates curl gnupg
