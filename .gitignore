@@ -11,3 +11,4 @@
 .bin/*/.config/anyenv
 lazygit*
 wezterm-*
+.rubocop.yml
