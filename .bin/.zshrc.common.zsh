@@ -10,10 +10,6 @@ setopt hist_ignore_all_dups
 
 bindkey -e
 
-autoload -Uz history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-
 # ghq
 function peco-ghq-look() {
   local project dir repository session current_session
@@ -98,6 +94,12 @@ if ! zplug check --verbose; then
     echo; zplug install
   fi
 fi
+zplug "zsh-users/zsh-history-substring-search"
+bindkey '^[OA' history-substring-search-up
+bindkey '^P' history-substring-search-up
+bindkey '^[OB' history-substring-search-down
+bindkey '^N' history-substring-search-down
+
 zplug load
 
 source $HOME/.cargo/env
