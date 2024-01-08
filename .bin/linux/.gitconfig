@@ -30,7 +30,7 @@ minus-emph-style = normal "#ad16c1"
 minus-style = syntax "#610e6c"
 line-numbers-minus-style = "#B10036"
 
-plus-emph-style = normal "#166827"
-plus-style = syntax "#12442a"
-line-numbers-plus-style = "#148e2f"
+plus-emph-style = normal "#00A0A0"
+plus-style = syntax "#114048"
+line-numbers-plus-style = "#00A0A0"
 
