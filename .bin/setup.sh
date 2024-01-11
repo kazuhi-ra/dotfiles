@@ -1,15 +1,19 @@
 #!/bin/bash
 
 if [ "$(uname)" = "Darwin" ]; then
-  HOST_NAME="mac"
+  DIR_NAME="mac"
 elif [ "$(uname)" = "Linux" ]; then
-  HOST_NAME="linux"
+  if [ "$(hostname)" = "zunda" ]; then
+    DIR_NAME="desktop"
+  else
+    DIR_NAME="workstation"
+  fi
 fi
 
-eval ".bin/${HOST_NAME}/install_packages.sh"
+eval ".bin/${DIR_NAME}/install_packages.sh"
 
-eval ".bin/${HOST_NAME}/languages.sh"
+eval ".bin/${DIR_NAME}/languages.sh"
 
-eval ".bin/${HOST_NAME}/editor.sh"
+eval ".bin/${DIR_NAME}/editor.sh"
 
 echo "お疲れ様でした。"
