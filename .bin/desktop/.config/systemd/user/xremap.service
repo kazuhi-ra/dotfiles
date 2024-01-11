@@ -1,0 +1,10 @@
+[Unit]
+Description=xremap
+
+[Service]
+Restart=always
+ExecStart=/home/kazuhira/.cargo/bin/xremap /home/kazuhira/workspace/github.com/kazuhi-ra/dotfiles/.bin/desktop/xremap_config.yml
+Environment="DISPLAY=:0"
+
+[Install]
+WantedBy=default.target
