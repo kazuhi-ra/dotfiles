@@ -1,5 +1,3 @@
-1password
-1password-cli
 automake
 bat
 bison
@@ -9,8 +7,6 @@ cmake
 copyq
 gettext
 git
-gnome-shell-extension-manager
-gnome-tweaks
 golang-go
 ibus-mozc
 libevent-dev
@@ -18,14 +14,12 @@ libncurses5-dev
 libreadline-dev
 libssl-dev
 libyaml-dev
-mozc-utils-gui
 neofetch
 peco
 pkg-config
 ripgrep
 tmux
 tree
-ulauncher
 vim
 xclip
 zlib1g-dev
