@@ -35,7 +35,7 @@ if [ "$(which tmux)" = "" ]; then
   cd "$(ghq list --full-path | grep --color=never -E tmux/tmux)" || exit
   cd tmux
   sh autogen.sh
-  ./configure && make
+  ./configure --enable-sixel --prefix=/usr/local && make
   sudo make install
 fi
 

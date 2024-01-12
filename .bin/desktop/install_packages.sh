@@ -24,6 +24,16 @@ if [ "$(which wezterm)" = "" ]; then
   sudo apt install ./wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
 fi
 
+echo "tmux"
+if [ "$(which tmux)" = "" ]; then
+  ghq get -shallow git@github.com:tmux/tmux.git
+  cd "$(ghq list --full-path | grep --color=never -E tmux/tmux)" || exit
+  cd tmux
+  sh autogen.sh
+  ./configure --enable-sixel --prefix=/usr/local && make
+  sudo make install
+fi
+
 echo "rustup"
 if [ "$(which rustup)" = "" ]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
