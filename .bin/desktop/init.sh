@@ -27,7 +27,7 @@ if [ "$(which ulauncher)" = "" ]; then
   sudo add-apt-repository universe -y && sudo add-apt-repository ppa:agornostal/ulauncher -y
 fi
 
-# ulauncher
+# to install the newer version go
 if [ "$(which go)" = "" ]; then
   sudo add-apt-repository ppa:longsleep/golang-backports
 fi

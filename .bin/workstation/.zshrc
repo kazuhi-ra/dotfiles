@@ -3,6 +3,9 @@ export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 
+export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
+
 source $HOME/.zplug/init.zsh
 source $HOME/.zshrc.common.zsh
 
