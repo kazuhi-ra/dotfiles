@@ -4,7 +4,7 @@ return {
 	font = wezterm.font_with_fallback({
 		{ family = "HackGen Console NF", weight = "Regular" },
 	}),
-	font_size = 13.0,
+	font_size = 16.8,
 
 	-- window
 	initial_rows = 100,
@@ -51,30 +51,30 @@ return {
 
 	-- key
 	keys = {
-		{ key = "Tab", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
-		{ key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action.DisableDefaultAssignment },
-		{ key = "w", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
-		{ key = "q", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
-		{ key = "LeftArrow", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
-		{ key = "RightArrow", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
-		{ key = "LeftArrow", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
-		{ key = "RightArrow", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
+		{ key = "Tab",        mods = "CTRL",       action = wezterm.action.DisableDefaultAssignment },
+		{ key = "Tab",        mods = "CTRL|SHIFT", action = wezterm.action.DisableDefaultAssignment },
+		{ key = "w",          mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
+		{ key = "q",          mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
+		{ key = "LeftArrow",  mods = "CTRL",       action = wezterm.action.DisableDefaultAssignment },
+		{ key = "RightArrow", mods = "CTRL",       action = wezterm.action.DisableDefaultAssignment },
+		{ key = "LeftArrow",  mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
+		{ key = "RightArrow", mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
 
 		-- session の作成, 移動
-		{ key = "t", mods = "CMD|SHIFT", action = wezterm.action.SendString("\027T") },
-		{ key = "j", mods = "CMD", action = wezterm.action.SendString("\027j") },
-		{ key = "k", mods = "CMD", action = wezterm.action.SendString("\027k") },
+		{ key = "t",          mods = "CMD|SHIFT",  action = wezterm.action.SendString("\027T") },
+		{ key = "j",          mods = "CMD",        action = wezterm.action.SendString("\027j") },
+		{ key = "k",          mods = "CMD",        action = wezterm.action.SendString("\027k") },
 
 		-- window の作成, 移動
-		{ key = "t", mods = "CMD", action = wezterm.action.SendString("\027t") },
-		{ key = "h", mods = "CMD", action = wezterm.action.SendString("\027h") },
-		{ key = "l", mods = "CMD", action = wezterm.action.SendString("\027l") },
+		{ key = "t",          mods = "CMD",        action = wezterm.action.SendString("\027t") },
+		{ key = "h",          mods = "CMD",        action = wezterm.action.SendString("\027h") },
+		{ key = "l",          mods = "CMD",        action = wezterm.action.SendString("\027l") },
 
 		-- sessionの一覧
-		{ key = "s", mods = "CMD", action = wezterm.action.SendString("\027s") },
+		{ key = "s",          mods = "CMD",        action = wezterm.action.SendString("\027s") },
 
 		-- kill
-		{ key = "w", mods = "CMD", action = wezterm.action.SendString("\027w") },
-		{ key = "q", mods = "CMD", action = wezterm.action.SendString("\027q") },
+		{ key = "w",          mods = "CMD",        action = wezterm.action.SendString("\027w") },
+		{ key = "q",          mods = "CMD",        action = wezterm.action.SendString("\027q") },
 	},
 }
