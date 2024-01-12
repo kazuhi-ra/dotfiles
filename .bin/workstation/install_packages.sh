@@ -36,6 +36,7 @@ if [ "$(which tmux)" = "" ]; then
   cd tmux
   sh autogen.sh
   ./configure && make
+  sudo make install
 fi
 
 echo "anyenv"
