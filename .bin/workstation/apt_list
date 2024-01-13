@@ -2,7 +2,6 @@ automake
 bat
 bison
 build-essential
-chrome-gnome-shell
 cmake
 gettext
 git
