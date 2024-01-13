@@ -4,11 +4,9 @@ bison
 build-essential
 chrome-gnome-shell
 cmake
-copyq
 gettext
 git
 golang-go
-ibus-mozc
 libevent-dev
 libncurses5-dev
 libreadline-dev
