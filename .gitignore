@@ -7,8 +7,7 @@
 .bin/*/.config/ghc
 .bin/*/.config/iterm2
 .bin/*/.user.zsh
-.bin/*/.config/lazygit/state.yml
 .bin/*/.config/anyenv
-lazygit*
+/lazygit*
 wezterm-*
 .rubocop.yml
