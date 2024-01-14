@@ -17,6 +17,7 @@ pkg-config
 ripgrep
 tmux
 tree
+unzip
 vim
 xclip
 zlib1g-dev
