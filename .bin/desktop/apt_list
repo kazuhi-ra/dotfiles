@@ -7,6 +7,7 @@ build-essential
 chrome-gnome-shell
 cmake
 copyq
+emacs
 gettext
 git
 gnome-tweaks

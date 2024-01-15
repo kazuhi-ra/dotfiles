@@ -3,6 +3,7 @@ bat
 bison
 build-essential
 cmake
+emacs
 gettext
 git
 golang-go
