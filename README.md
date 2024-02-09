@@ -22,7 +22,7 @@ cd ~/workspace/github.com/kazuhi-ra/dotfiles && .bin/init.sh
 
 mozcに設定ファイルをimport
 
-`.bin/linux/mozc.txt`
+`.bin/desktop/mozc.txt`
 
 いったん再起動
 
