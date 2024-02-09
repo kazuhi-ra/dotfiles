@@ -3,7 +3,7 @@
 if [ "$(uname)" = "Darwin" ]; then
   DIR_NAME="mac"
 elif [ "$(uname)" = "Linux" ]; then
-  if [ "$(hostname)" = "zunda" ]; then
+  if [ "$(hostname)" = "zunda" ] || [ "$(hostname)" = "himari" ]; then
     DIR_NAME="desktop"
   else
     DIR_NAME="workstation"
