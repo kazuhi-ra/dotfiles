@@ -43,5 +43,10 @@ function peco-ghq-look() {
 zle -N peco-ghq-look
 bindkey '^G' peco-ghq-look
 
+# anyenv
+eval "$(anyenv init -)"
+
+# ghc
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
 xset r rate 225 30
