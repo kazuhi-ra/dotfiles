@@ -20,6 +20,7 @@ peco
 pkg-config
 ripgrep
 tree
+uidmap
 ulauncher
 vim
 xclip
