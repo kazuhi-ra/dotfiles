@@ -25,8 +25,8 @@ fi
 
 echo "wezterm"
 if [ "$(which wezterm)" = "" ]; then
-	curl -LO https://github.com/wez/wezterm/releases/download/20230712-072601-f4abf8fd/wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
-	sudo apt install ./wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
+	curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Ubuntu22.04.deb
+	sudo apt install -y ./wezterm-20240203-110809-5046fc22.Ubuntu22.04.deb
 fi
 
 echo "tmux"
