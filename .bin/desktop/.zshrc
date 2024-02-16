@@ -49,4 +49,8 @@ eval "$(anyenv init -)"
 # ghc
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
+# for docker rootless mode
+export PATH=/home/kazuhira/bin:$PATH
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
+
 xset r rate 225 30
