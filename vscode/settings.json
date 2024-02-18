@@ -3,7 +3,6 @@
   "workbench.preferredDarkColorTheme": "Tomorrow Night Blue",
   "workbench.statusBar.visible": true,
   "workbench.iconTheme": "vscode-icons",
-  "workbench.activityBar.visible": false,
   "workbench.commandPalette.history": 2000,
   "workbench.startupEditor": "newUntitledFile",
   "workbench.preferredLightColorTheme": "Default High Contrast",
@@ -53,7 +52,7 @@
   "editor.quickSuggestionsDelay": 1,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "editor.tokenColorCustomizations": {
     "variables": "#f8f9f1da",
@@ -70,7 +69,7 @@
   "[ruby]": {
     "editor.defaultFormatter": "jnbt.vscode-rufo"
   },
-  
+
   "eslint.options": {
     "extensions": [".js", ".jsx", ".mdx", ".ts", ".tsx"]
   },
@@ -128,5 +127,6 @@
   "javascript.preferGoToSourceDefinition": true,
   "window.commandCenter": false,
   "workbench.layoutControl.enabled": false,
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "workbench.activityBar.location": "hidden"
 }
