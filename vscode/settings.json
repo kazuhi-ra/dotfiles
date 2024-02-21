@@ -35,12 +35,9 @@
     "terminal.ansiCyan": "#89b8c2",
     "terminal.ansiMagenta": "#a093c7",
     "terminal.ansiWhite": "#d0d2db",
-
     "tab.inactiveForeground": "#ffffff88",
     "contrastBorder": "#57d5ffa2",
-
     "editorSuggestWidget.selectedBackground": "#3e0041c8",
-
     "editorInlayHint.background": "#ff660000",
     "editorInlayHint.foreground": "#ffffff73"
   },
@@ -69,9 +66,14 @@
   "[ruby]": {
     "editor.defaultFormatter": "jnbt.vscode-rufo"
   },
-
   "eslint.options": {
-    "extensions": [".js", ".jsx", ".mdx", ".ts", ".tsx"]
+    "extensions": [
+      ".js",
+      ".jsx",
+      ".mdx",
+      ".ts",
+      ".tsx"
+    ]
   },
   "eslint.validate": [
     "mdx",
