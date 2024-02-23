@@ -12,8 +12,8 @@
     "editor.selectionForeground": "#c8c8c870",
     "editor.selectionBackground": "#088cc06f",
     "editor.stackFrameHighlightBackground": "#ccdd3267",
-    "editorIndentGuide.activeBackground": "#cec3c362",
-    "editorIndentGuide.background": "#afb5b62f",
+    "editorIndentGuide.activeBackground1": "#cec3c3be",
+    "editorIndentGuide.background1": "#afb5b62f",
     "diffEditor.removedTextBorder": "#c292db",
     "diffEditor.insertedTextBorder": "#48c563f5",
     "terminal.foreground": "#c6c8d1",
@@ -100,12 +100,8 @@
   "typescript.format.enable": false,
   "typescript.updateImportsOnFileMove.enabled": "never",
   "solargraph.formatting": true,
-  "solargraph.commandPath": "/Users/kazuhi-ra/.anyenv/envs/rbenv/shims/solargraph",
+  "solargraph.commandPath": "/home/kazuhira/.anyenv/envs/rbenv/shims/solargraph",
   "solargraph.logLevel": "info",
-  "typeprof.server.path": "/Users/kazuhi-ra/.anyenv/envs/rbenv/shims/typeprof",
-  "yaml.schemas": {
-    "file:///Users/kazuhi-ra/.vscode/extensions/docsmsft.docs-yaml-1.0.0/dist/toc.schema.json": "/toc\\.yml/i"
-  },
   "files.autoSave": "onFocusChange",
   "files.insertFinalNewline": true,
   "vsicons.dontShowNewVersionMessage": true,
@@ -130,5 +126,6 @@
   "window.commandCenter": false,
   "workbench.layoutControl.enabled": false,
   "window.zoomLevel": 1,
-  "workbench.activityBar.location": "hidden"
+  "workbench.activityBar.location": "hidden",
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false
 }

@@ -20,7 +20,7 @@
     "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   },
   {
-    "key": "shift+cmd+g",
+    "key": "ctrl+shift+g",
     "command": "workbench.view.scm",
     "when": "workbench.scm.active"
   },
@@ -57,7 +57,7 @@
     "when": "terminalProcessSupported && terminalTabsFocus"
   },
   {
-    "key": "cmd+t",
+    "key": "ctrl+t",
     "command": "workbench.action.terminal.split",
     "when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
   },
@@ -139,7 +139,7 @@
     "when": "terminalFocus"
   },
   {
-    "key": "cmd+t",
+    "key": "ctrl+t",
     "command": "workbench.action.moveEditorToRightGroup",
     "when": "editorFocus"
   },
@@ -245,11 +245,11 @@
     "when": "activeEditorGroupEmpty && multipleEditorGroups"
   },
   {
-    "key": "ctrl+,",
+    "key": "meta+,",
     "command": "workbench.action.focusActiveEditorGroup"
   },
   {
-    "key": "ctrl+,",
+    "key": "meta+,",
     "command": "workbench.action.terminal.focus",
     "when": "editorFocus"
   },
@@ -259,18 +259,13 @@
     "when": "terminal.active"
   },
   {
-    "key": "ctrl+,",
+    "key": "meta+,",
     "command": "workbench.action.terminal.toggleTerminal",
     "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   },
   {
     "key": "cmd+left",
     "command": "-cursorLineStart",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+a",
-    "command": "cursorHome",
     "when": "textInputFocus"
   },
   {
@@ -353,5 +348,91 @@
     "key": "ctrl+backspace",
     "command": "-deleteLeft",
     "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+t",
+    "command": "-workbench.action.showAllSymbols"
+  },
+  {
+    "key": "meta+k",
+    "command": "workbench.action.focusNextGroup"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "workbench.action.openSettings"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "-workbench.action.openSettings"
+  },
+  {
+    "key": "meta+.",
+    "command": "editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+.",
+    "command": "-editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "meta+.",
+    "command": "workbench.action.terminal.showQuickFixes",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+.",
+    "command": "-workbench.action.terminal.showQuickFixes",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "meta+.",
+    "command": "acceptSelectedCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+.",
+    "command": "-acceptSelectedCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "meta+.",
+    "command": "editor.changeDropType",
+    "when": "dropWidgetVisible"
+  },
+  {
+    "key": "ctrl+.",
+    "command": "-editor.changeDropType",
+    "when": "dropWidgetVisible"
+  },
+  {
+    "key": "meta+.",
+    "command": "editor.changePasteType",
+    "when": "pasteWidgetVisible"
+  },
+  {
+    "key": "ctrl+.",
+    "command": "-editor.changePasteType",
+    "when": "pasteWidgetVisible"
+  },
+  {
+    "key": "meta+.",
+    "command": "problems.action.showQuickFixes",
+    "when": "problemFocus"
+  },
+  {
+    "key": "ctrl+.",
+    "command": "-problems.action.showQuickFixes",
+    "when": "problemFocus"
+  },
+  {
+    "key": "space",
+    "command": "renameFile",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "f2",
+    "command": "-renameFile",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
   }
 ]
