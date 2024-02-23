@@ -8,6 +8,10 @@ source $HOME/.zshrc.common.zsh
 
 alias r="exec $SHELL -l"
 
+function c() {
+  echo -n "$*" | xsel --clipboard --input
+}
+
 # ghq
 function peco-ghq-look() {
   local project dir repository session current_session
