@@ -59,7 +59,7 @@ return {
 		{ key = "RightArrow", mods = "CTRL",       action = wezterm.action.DisableDefaultAssignment },
 		{ key = "LeftArrow",  mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
 		{ key = "RightArrow", mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
-		{ key = "s",          mods = "CMD",        action = wezterm.action.SendString("\027s") },
+		{ key = "s",          mods = "CMD",        action = wezterm.action.SendString("\027 w") },
 
 		-- session の作成, 移動
 		{ key = "t",          mods = "CMD|SHIFT",  action = wezterm.action.SendString("\027T") },
