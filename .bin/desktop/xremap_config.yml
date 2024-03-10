@@ -7,9 +7,9 @@ modmap:
 
   - name: ThinkPad(only wezterm)
     device:
-      only: 'AT Translated Set 2 keyboard'
+      only: "AT Translated Set 2 keyboard"
     application:
-      only: 'wezterm'
+      only: "wezterm"
     remap:
       CapsLock: Tab
       ALT_L: [SUPER_L, Muhenkan]
@@ -19,19 +19,19 @@ modmap:
 
   - name: ThinkPad
     device:
-      only: 'AT Translated Set 2 keyboard'
+      only: "AT Translated Set 2 keyboard"
     application:
       not: wezterm
     remap:
       CapsLock: Tab
       ALT_L: [CTRL_R, Muhenkan]
-      ALT_R:  SUPER_L
+      ALT_R: SUPER_L
       SUPER_L: ALT_L
       CTRL_R: [ALT_L, Henkan]
 
   - name: Kinesis(only wezterm)
     device:
-      only: 'Kinesis Advantage2 Keyboard'
+      only: "Kinesis Advantage2 Keyboard"
     application:
       only: wezterm
     remap:
@@ -40,13 +40,13 @@ modmap:
 
   - name: Kinesis
     device:
-      only: 'Kinesis Advantage2 Keyboard'
+      only: "Kinesis Advantage2 Keyboard"
     application:
       not: wezterm
     remap:
       ALT_R: [ALT_R, Henkan]
       SUPER_L: [CTRL_R, Muhenkan]
-      CTRL_L:  SUPER_L
+      CTRL_L: SUPER_L
 
 keymap:
   - name: Default
@@ -80,6 +80,12 @@ keymap:
       ALT-Backspace: C-Backspace
       CONTROL_R-Backspace: C-SHIFT-Backspace
       ALT-Delete: C-Delete
+
+      # ページ移動
+      CTRL-Up: Home
+      CTRL-Down: End
+      CTRL-Left: Alt-Left
+      CTRL-Right: Alt-Right
 
   - name: Wezterm
     application:
