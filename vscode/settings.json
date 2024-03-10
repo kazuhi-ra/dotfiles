@@ -96,8 +96,6 @@
   "prettier.semi": false,
   "prettier.jsxSingleQuote": true,
   "prettier.singleQuote": true,
-  "javascript.format.enable": false,
-  "typescript.format.enable": false,
   "typescript.updateImportsOnFileMove.enabled": "never",
   "solargraph.formatting": true,
   "solargraph.commandPath": "/home/kazuhira/.anyenv/envs/rbenv/shims/solargraph",
@@ -120,7 +118,7 @@
     "markdown": true
   },
   "editor.linkedEditing": true,
-  "editor.fontSize": 12.6,
+  "editor.fontSize": 12.3,
   "typescript.preferGoToSourceDefinition": true,
   "javascript.preferGoToSourceDefinition": true,
   "window.commandCenter": false,
