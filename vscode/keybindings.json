@@ -129,7 +129,7 @@
     "when": "textInputFocus && !editorReadonly"
   },
   {
-    "key": "cmd+n",
+    "key": "ctrl+n",
     "command": "workbench.action.moveEditorToBelowGroup",
     "when": "editorFocus"
   },
