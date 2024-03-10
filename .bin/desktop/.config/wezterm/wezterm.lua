@@ -60,6 +60,7 @@ return {
 		{ key = "LeftArrow",  mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
 		{ key = "RightArrow", mods = "CMD",        action = wezterm.action.DisableDefaultAssignment },
 		{ key = "s",          mods = "CMD",        action = wezterm.action.SendString("\027 w") },
+		{ key = "r",          mods = "CMD",        action = wezterm.action.SendString("\027E") },
 
 		-- session の作成, 移動
 		{ key = "t",          mods = "CMD|SHIFT",  action = wezterm.action.SendString("\027T") },
@@ -70,9 +71,6 @@ return {
 		{ key = "t",          mods = "CMD",        action = wezterm.action.SendString("\027t") },
 		{ key = "h",          mods = "CMD",        action = wezterm.action.SendString("\027h") },
 		{ key = "l",          mods = "CMD",        action = wezterm.action.SendString("\027l") },
-
-		-- sessionの一覧
-		{ key = "r",          mods = "CMD",        action = wezterm.action.SendString("\027r") },
 
 		-- kill
 		{ key = "w",          mods = "CMD",        action = wezterm.action.SendString("\027w") },
