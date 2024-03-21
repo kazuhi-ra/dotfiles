@@ -41,7 +41,7 @@
     "editorInlayHint.background": "#ff660000",
     "editorInlayHint.foreground": "#ffffff73"
   },
-  "editor.fontFamily": "HackGen, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'HackGen Console NF'",
   "editor.renderWhitespace": "none",
   "editor.tabSize": 2,
   "editor.minimap.enabled": false,
@@ -67,13 +67,7 @@
     "editor.defaultFormatter": "jnbt.vscode-rufo"
   },
   "eslint.options": {
-    "extensions": [
-      ".js",
-      ".jsx",
-      ".mdx",
-      ".ts",
-      ".tsx"
-    ]
+    "extensions": [".js", ".jsx", ".mdx", ".ts", ".tsx"]
   },
   "eslint.validate": [
     "mdx",
@@ -118,12 +112,15 @@
     "markdown": true
   },
   "editor.linkedEditing": true,
-  "editor.fontSize": 12.3,
+  "editor.fontSize": 12.9,
   "typescript.preferGoToSourceDefinition": true,
   "javascript.preferGoToSourceDefinition": true,
   "window.commandCenter": false,
   "workbench.layoutControl.enabled": false,
   "window.zoomLevel": 1,
   "workbench.activityBar.location": "hidden",
-  "diffEditor.useInlineViewWhenSpaceIsLimited": false
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false,
+  "yaml.schemas": {
+    "file:///home/kazuhira/.vscode/extensions/docsmsft.docs-yaml-1.0.1/dist/toc.schema.json": "/toc\\.yml/i"
+  }
 }
