@@ -4,25 +4,26 @@
 NVIM_REPO="neovim/neovim"
 ghq get "git@github.com:${NVIM_REPO}.git"
 
-ASTRO_NVIM_REPO="AstroNvim/AstroNvim"
+ASTRO_NVIM_REPO="AstroNvim/template"
 ghq get "git@github.com:${ASTRO_NVIM_REPO}.git"
 
-USER_REPO="kazuhi-ra/nvim-user"
+USER_REPO="kazuhi-ra/nvim-user-v4"
 ghq get "git@github.com:${USER_REPO}.git"
 
 # nvimをbuild
 if [ "$(which nvim)" = "" ]; then
-  cd "$(ghq list --full-path | grep --color=never -E "${NVIM_REPO}")" || exit
-  make CMAKE_BUILD_TYPE=RelWithDebInfo
-  sudo make install
+	cd "$(ghq list --full-path | grep --color=never -E "${NVIM_REPO}")" || exit
+	make CMAKE_BUILD_TYPE=RelWithDebInfo
+	sudo make install
 fi
 
 # AstroNvimを.config/nvimにlink
 if [ ! -d ~/.config/nvim ]; then
-  ASTRO_NVIM_PATH="$(ghq list --full-path | grep --color=never -E "${ASTRO_NVIM_REPO}")"
-  ln -fnsv "$ASTRO_NVIM_PATH" "${HOME}/.config/nvim"
+	ASTRO_NVIM_PATH="$(ghq list --full-path | grep --color=never -E "${ASTRO_NVIM_REPO}")"
+	ln -fnsv "$ASTRO_NVIM_PATH" "${HOME}/.config/nvim"
+	rm -rf "${HOME}/.config/nvim/lua"
 fi
 
-# ~/.config/nvim/lua/user にlink
+# ~/.config/nvim/lua にlink
 USER_REPO_PATH="$(ghq list --full-path | grep --color=never -E "${USER_REPO}")"
-ln -fnsv "$USER_REPO_PATH" "${HOME}/.config/nvim/lua/user"
+ln -fnsv "$USER_REPO_PATH" "${HOME}/.config/nvim/lua"
