@@ -23,9 +23,9 @@ if [ "$(which op)" = "" ]; then
 fi
 
 # ulauncher
-if [ "$(which ulauncher)" = "" ]; then
-	sudo add-apt-repository universe -y && sudo add-apt-repository ppa:agornostal/ulauncher -y
-fi
+# if [ "$(which ulauncher)" = "" ]; then
+# 	sudo add-apt-repository universe -y && sudo add-apt-repository ppa:agornostal/ulauncher -y
+# fi
 
 # to install the newer version go
 if [ "$(which go)" = "" ]; then
