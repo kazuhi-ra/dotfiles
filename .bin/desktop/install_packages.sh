@@ -15,6 +15,11 @@ if [ "$(which lazydocker)" = "" ]; then
 	go install github.com/jesseduffield/lazydocker@v0.23.0
 fi
 
+echo "docker"
+if [ "$(which docker)" = "" ]; then
+	dockerd-rootless-setuptool.sh install
+fi
+
 echo "lazygit"
 if [ "$(which lazygit)" = "" ]; then
 	LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
