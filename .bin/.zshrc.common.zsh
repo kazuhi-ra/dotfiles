@@ -39,6 +39,7 @@ bindkey '^j' do_enter
 
 eval "$(starship init zsh)"
 
+zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
 if ! zplug check --verbose; then
@@ -47,7 +48,6 @@ if ! zplug check --verbose; then
     echo; zplug install
   fi
 fi
-zplug "zsh-users/zsh-history-substring-search"
 bindkey '^[OA' history-substring-search-up
 bindkey '^P' history-substring-search-up
 bindkey '^[OB' history-substring-search-down
