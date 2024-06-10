@@ -8,6 +8,11 @@ source $HOME/.zshrc.common.zsh
 
 alias r="exec $SHELL -l"
 
+function discord_updater() {
+  wget "https://discord.com/api/download/stable?platform=linux&format=deb" -O /tmp/discord-update.deb
+  sudo apt install -y /tmp/discord-update.deb
+}
+
 function c() {
   echo -n "$*" | xsel --clipboard --input
 }
