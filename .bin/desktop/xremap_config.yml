@@ -31,7 +31,7 @@ modmap:
 
   - name: Kinesis(only wezterm)
     device:
-      only: "Kinesis Advantage2 Keyboard"
+      only: ["Kinesis Advantage2 Keyboard", "HID 05f3:0007"]
     application:
       only: wezterm
     remap:
@@ -40,7 +40,7 @@ modmap:
 
   - name: Kinesis
     device:
-      only: "Kinesis Advantage2 Keyboard"
+      only: ["Kinesis Advantage2 Keyboard", "HID 05f3:0007"]
     application:
       not: wezterm
     remap:
