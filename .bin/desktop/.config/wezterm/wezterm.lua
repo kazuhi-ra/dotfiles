@@ -4,7 +4,7 @@ return {
 	font = wezterm.font_with_fallback({
 		{ family = "HackGen Console NF", weight = "Regular" },
 	}),
-	font_size = 14.0,
+	font_size = 16.8,
 
 	-- window
 	initial_rows = 100,
