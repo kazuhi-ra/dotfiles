@@ -1,11 +1,44 @@
 #!/bin/bash
 
+# スクリプトのディレクトリを取得
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+BASE_DIR="$(dirname "$SCRIPT_DIR")"
 
-for dotfile in "${SCRIPT_DIR}"/.??*; do
-  [[ "$dotfile" == "${SCRIPT_DIR}/.git" ]] && continue
+# 処理対象のディレクトリを指定
+SCRIPT_DIRS=("$SCRIPT_DIR" "$BASE_DIR/shared")
 
-  ln -fnsv "$dotfile" "$HOME"
+for dir in "${SCRIPT_DIRS[@]}"; do
+  echo "Processing directory: $dir"
+
+  # ディレクトリが存在するかチェック
+  if [[ ! -d "$dir" ]]; then
+    echo "Directory not found: $dir"
+    continue
+  fi
+
+  for dotfile in "${dir}"/.??*; do
+    if [[ "$dotfile" == "${dir}/.git" ]]; then
+      continue
+    fi
+
+    if [[ -d "$dotfile" ]]; then
+      dotfile_basename=$(basename "$dotfile")
+      target_dir="$HOME/$dotfile_basename"
+
+      echo "$dotfile_basename"
+
+      mkdir -p "$target_dir"
+
+      for file in "$dotfile"/*; do
+        file_basename=$(basename "$file")
+        echo "$file"
+        echo "$target_dir/$file_basename"
+        ln -fnsv "$file" "$target_dir/$file_basename"
+      done
+    elif [[ -f "$dotfile" ]]; then
+      ln -fnsv "$dotfile" "$HOME"
+    fi
+  done
 done
 
 ln -fnsv "$(dirname "${SCRIPT_DIR}")/.zshrc.common.zsh" "$HOME"
