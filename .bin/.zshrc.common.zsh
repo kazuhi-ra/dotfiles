@@ -10,6 +10,7 @@ setopt hist_ignore_all_dups
 
 bindkey -e
 
+alias r="exec \$SHELL -l"
 alias b="batcat"
 alias t="tree -ACL 2 -I node_modules"
 alias tt="tree -aACL 2 -I node_modules"
