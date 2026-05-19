@@ -20,7 +20,7 @@
     "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   },
   {
-    "key": "ctrl+shift+g",
+    "key": "shift+cmd+g",
     "command": "workbench.view.scm",
     "when": "workbench.scm.active"
   },
@@ -38,7 +38,7 @@
     "command": "-workbench.action.files.newUntitledFile"
   },
   {
-    "key": "cmd+g",
+    "key": "ctrl+g",
     "command": "git.checkout"
   },
   {
@@ -57,7 +57,7 @@
     "when": "terminalProcessSupported && terminalTabsFocus"
   },
   {
-    "key": "ctrl+t",
+    "key": "cmd+t",
     "command": "workbench.action.terminal.split",
     "when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
   },
@@ -129,7 +129,7 @@
     "when": "textInputFocus && !editorReadonly"
   },
   {
-    "key": "ctrl+n",
+    "key": "cmd+n",
     "command": "workbench.action.moveEditorToBelowGroup",
     "when": "editorFocus"
   },
@@ -139,7 +139,7 @@
     "when": "terminalFocus"
   },
   {
-    "key": "ctrl+t",
+    "key": "cmd+t",
     "command": "workbench.action.moveEditorToRightGroup",
     "when": "editorFocus"
   },
@@ -245,11 +245,11 @@
     "when": "activeEditorGroupEmpty && multipleEditorGroups"
   },
   {
-    "key": "meta+,",
+    "key": "ctrl+,",
     "command": "workbench.action.focusActiveEditorGroup"
   },
   {
-    "key": "meta+,",
+    "key": "ctrl+,",
     "command": "workbench.action.terminal.focus",
     "when": "editorFocus"
   },
@@ -259,7 +259,7 @@
     "when": "terminal.active"
   },
   {
-    "key": "meta+,",
+    "key": "ctrl+,",
     "command": "workbench.action.terminal.toggleTerminal",
     "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   },
@@ -349,19 +349,19 @@
     "command": "-workbench.action.showAllSymbols"
   },
   {
-    "key": "meta+k",
+    "key": "ctrl+k",
     "command": "workbench.action.focusNextGroup"
   },
   {
-    "key": "ctrl+,",
+    "key": "cmd+,",
     "command": "workbench.action.openSettings"
   },
   {
-    "key": "ctrl+,",
+    "key": "cmd+,",
     "command": "-workbench.action.openSettings"
   },
   {
-    "key": "meta+.",
+    "key": "ctrl+.",
     "command": "editor.action.quickFix",
     "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
   },
@@ -371,7 +371,7 @@
     "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
   },
   {
-    "key": "meta+.",
+    "key": "ctrl+.",
     "command": "workbench.action.terminal.showQuickFixes",
     "when": "terminalFocus"
   },
@@ -381,7 +381,7 @@
     "when": "terminalFocus"
   },
   {
-    "key": "meta+.",
+    "key": "ctrl+.",
     "command": "acceptSelectedCodeAction",
     "when": "codeActionMenuVisible"
   },
@@ -391,7 +391,7 @@
     "when": "codeActionMenuVisible"
   },
   {
-    "key": "meta+.",
+    "key": "ctrl+.",
     "command": "editor.changeDropType",
     "when": "dropWidgetVisible"
   },
@@ -401,7 +401,7 @@
     "when": "dropWidgetVisible"
   },
   {
-    "key": "meta+.",
+    "key": "ctrl+.",
     "command": "editor.changePasteType",
     "when": "pasteWidgetVisible"
   },
@@ -411,7 +411,7 @@
     "when": "pasteWidgetVisible"
   },
   {
-    "key": "meta+.",
+    "key": "ctrl+.",
     "command": "problems.action.showQuickFixes",
     "when": "problemFocus"
   },
@@ -429,5 +429,62 @@
     "key": "f2",
     "command": "-renameFile",
     "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
-  }
+  },
+  {
+    "key": "shift+cmd+g",
+    "command": "workbench.view.scm",
+    "when": "workbench.scm.active && !gitlens:disabled && config.gitlens.keymap == 'chorded'"
+  },
+  {
+    "key": "ctrl+shift+g",
+    "command": "-workbench.view.scm",
+    "when": "workbench.scm.active && !gitlens:disabled && config.gitlens.keymap == 'chorded'"
+  },
+  {
+    "key": "ctrl+]",
+    "command": "editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus"
+  },
+  {
+    "key": "ctrl+a",
+    "command": "-cursorLineStart",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "cmd+left",
+    "command": "-cursorHome",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+a",
+    "command": "cursorHome",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "home",
+    "command": "-cursorHome",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "-workbench.action.gotoLine"
+  },
+  {
+    "key": "shift+cmd+r",
+    "command": "workbench.view.extension.github-pull-requests",
+    "when": "viewContainer.workbench.view.extension.github-pull-requests.enabled"
+},
+{
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+        "text": "\\\r\n"
+    },
+    "when": "terminalFocus"
+},
+{
+  "key": "alt+cmd+s",
+  "command": "workbench.action.toggleUnifiedSidebarFromKeyboard",
+  "when": "!isAuxiliaryWindowFocusedContext"
+}
 ]
