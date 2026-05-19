@@ -4,7 +4,7 @@
 NVIM_REPO="neovim/neovim"
 ghq get "git@github.com:${NVIM_REPO}.git"
 
-USER_REPO="kazuhi-ra/nvim-user-v4"
+USER_REPO="kazuhi-ra/nvim-user-v6"
 ghq get "git@github.com:${USER_REPO}.git"
 
 # nvimをbuild
