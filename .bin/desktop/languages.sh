@@ -32,6 +32,6 @@ if [ "$(which node)" = "" ]; then
 fi
 
 if [ "$(which ruby)" = "" ]; then
-	rbenv install 3.3.0
-	rbenv global 3.3.0
+	rbenv install 3.3.6
+	rbenv global 3.3.6
 fi
