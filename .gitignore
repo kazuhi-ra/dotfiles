@@ -12,3 +12,4 @@
 wezterm-*
 .rubocop.yml
 aws
+/.bin/mac/.config/karabiner/automatic_backups
