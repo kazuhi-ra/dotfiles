@@ -63,9 +63,15 @@ compute() {
   fi
 
   # --- codex: real 5h (primary) and weekly (secondary) quota ---
-  local cfile rl cp cs
-  cfile="$(find "$HOME/.codex/sessions" -name 'rollout-*.jsonl' -type f 2>/dev/null \
-            | xargs ls -t 2>/dev/null | head -1)"
+  # Pick the most recent rollout that actually has a rate_limits snapshot; a
+  # freshly started session has none until its first turn (would hide codex).
+  local cfile rl cp cs f
+  cfile=""
+  while IFS= read -r f; do
+    [ -n "$f" ] || continue
+    if grep -q '"rate_limits"' "$f" 2>/dev/null; then cfile="$f"; break; fi
+  done < <(find "$HOME/.codex/sessions" -name 'rollout-*.jsonl' -type f -mtime -3 2>/dev/null \
+            | xargs ls -t 2>/dev/null)
   if [ -n "$cfile" ]; then
     rl="$(grep '"rate_limits"' "$cfile" 2>/dev/null | tail -1 \
           | jq -c 'first(..|objects|select(has("rate_limits")).rate_limits) // empty' 2>/dev/null)"
