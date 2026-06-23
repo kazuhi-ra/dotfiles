@@ -42,24 +42,34 @@ color() {
   fi
 }
 
-compute() {
-  local out=""
+# seconds -> compact eta like "1h52m" or "47m" (clamped at 0)
+fmt_eta() {
+  local s="$1" h m
+  [ "$s" -lt 0 ] 2>/dev/null && s=0
+  h=$(( s / 3600 )); m=$(( (s % 3600) / 60 ))
+  if [ "$h" -gt 0 ]; then printf '%dh%02dm' "$h" "$m"; else printf '%dm' "$m"; fi
+}
 
-  # --- claude: ccusage cost (USD) for active 5h block + trailing-7d, vs caps ---
-  local json now c5 rem5 c7 rem7 seg
+compute() {
+  local out="" now
+  now="$(date +%s)"
+
+  # --- claude: ccusage cost (USD) for active 5h block + weekly window, vs caps ---
+  local json c5 rem5 cend c7 rem7 seg diff k wkstart
   json="$("$CCUSAGE" blocks --json 2>/dev/null)"
   if [ -n "$json" ]; then
     seg=""
-    # 5h: current active block cost
+    # 5h: current active block cost + reset countdown (approx: block endTime,
+    # which is hour-floored so it runs up to ~1h ahead of the real /usage reset)
     c5="$(printf '%s' "$json" | jq '[.blocks[]|select(.isActive==true)|.costUSD]|first // 0' 2>/dev/null)"
     if [ -n "${c5:-}" ] && [ "${CLAUDE_5H_COST_LIMIT:-0}" -gt 0 ] 2>/dev/null; then
       rem5="$(jq -n --argjson c "$c5" --argjson m "$CLAUDE_5H_COST_LIMIT" '([100-($c*100/$m),0]|max)|floor')"
       seg+=" $(color "$rem5")${rem5}%#[default]"
+      cend="$(printf '%s' "$json" | jq -r 'first(.blocks[]|select(.isActive).endTime) // "" | if . == "" then "" else (sub("\\.[0-9]+Z$";"Z")|fromdateiso8601|tostring) end' 2>/dev/null)"
+      [ -n "$cend" ] && [ "$(( cend - now ))" -gt 0 ] && seg+="#[fg=colour245] $(fmt_eta $(( cend - now )))#[default]"
     fi
     # weekly: cost since the current fixed weekly window's start. The window
     # resets every 7 days from CLAUDE_WEEK_ANCHOR; floor (now-anchor)/7d to find it.
-    now="$(date +%s)"
-    local diff k wkstart
     diff=$(( now - CLAUDE_WEEK_ANCHOR ))
     if [ "$diff" -ge 0 ]; then k=$(( diff / 604800 )); else k=$(( (diff - 604799) / 604800 )); fi
     wkstart=$(( CLAUDE_WEEK_ANCHOR + k * 604800 ))
@@ -75,7 +85,7 @@ compute() {
   # --- codex: real 5h (primary) and weekly (secondary) quota ---
   # Pick the most recent rollout that actually has a rate_limits snapshot; a
   # freshly started session has none until its first turn (would hide codex).
-  local cfile rl cp cs f
+  local cfile rl cp cs f creset cseg
   cfile=""
   while IFS= read -r f; do
     [ -n "$f" ] || continue
@@ -88,8 +98,13 @@ compute() {
     if [ -n "$rl" ]; then
       cp="$(printf '%s' "$rl" | jq -r '(100 - (.primary.used_percent   // 0)) | floor')"
       cs="$(printf '%s' "$rl" | jq -r '(100 - (.secondary.used_percent // 0)) | floor')"
+      # 5h reset countdown from the server's exact resets_at epoch
+      creset="$(printf '%s' "$rl" | jq -r '.primary.resets_at // empty')"
+      cseg=" $(color "$cp")${cp}%#[default]"
+      [ -n "$creset" ] && [ "$(( creset - now ))" -gt 0 ] && cseg+="#[fg=colour245] $(fmt_eta $(( creset - now )))#[default]"
+      cseg+=" w$(color "$cs")${cs}%#[default]"
       [ -n "$out" ] && out+="#[fg=colour240] | #[default]"
-      out+="#[fg=colour110]cdx#[default] $(color "$cp")${cp}%#[default] w$(color "$cs")${cs}%#[default]"
+      out+="#[fg=colour110]cdx#[default]${cseg}"
     fi
   fi
 
