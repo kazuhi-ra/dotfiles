@@ -18,14 +18,16 @@ LOCK="${TMPDIR:-/tmp}/tmux-llm-usage.lock"
 TTL=60 # seconds between refreshes
 
 CCUSAGE="$(command -v ccusage 2>/dev/null || echo "$HOME/.anyenv/envs/nodenv/shims/ccusage")"
-# claude caps in tokens (ccusage totalTokens, ~97% cache-read so the raw counts
-# are large). No per-plan setting exists; these are calibrated empirically.
-# Re-calibrate when they drift:  cap = <ccusage tokens> / (used_fraction from /usage)
-#   5h  : active block totalTokens          / (5h used %)
-#   week: trailing-7d sum of block tokens   / (weekly used %)
-# Calibrated 2026-06-23 against /usage: 5h=14% used, week=33% used.
-CLAUDE_TOKEN_LIMIT="${CLAUDE_TOKEN_LIMIT:-1190000000}"
-CLAUDE_WEEKLY_TOKEN_LIMIT="${CLAUDE_WEEKLY_TOKEN_LIMIT:-14600000000}"
+# claude caps as ccusage COST (USD). Cost weights token types like the real rate
+# limit does (output heavy, cache-read cheap), so it tracks /usage far better than
+# raw token counts (which are ~97% cache-read and drift non-linearly).
+# No per-plan setting exists; calibrate empirically.
+# Re-calibrate when it drifts:  cap = <ccusage costUSD> / (used_fraction from /usage)
+#   5h  : active block costUSD        / (5h used %)
+#   week: trailing-7d sum of costUSD  / (weekly used %)
+# Calibrated 2026-06-23 against /usage: 5h=22% used, week=35% used.
+CLAUDE_5H_COST_LIMIT="${CLAUDE_5H_COST_LIMIT:-335}"
+CLAUDE_WEEK_COST_LIMIT="${CLAUDE_WEEK_COST_LIMIT:-10323}"
 
 # remaining% -> tmux fg color markup (green / yellow / red)
 color() {
@@ -38,23 +40,23 @@ color() {
 compute() {
   local out=""
 
-  # --- claude: ccusage 5h block + trailing-7d vs calibrated caps (approximate) ---
-  local json now cur5 rem5 cur7 rem7 seg
+  # --- claude: ccusage cost (USD) for active 5h block + trailing-7d, vs caps ---
+  local json now c5 rem5 c7 rem7 seg
   json="$("$CCUSAGE" blocks --json 2>/dev/null)"
   if [ -n "$json" ]; then
     seg=""
-    # 5h: current active block
-    cur5="$(printf '%s' "$json" | jq '[.blocks[]|select(.isActive==true)|.totalTokens]|first // 0' 2>/dev/null)"
-    if [ -n "${cur5:-}" ] && [ "${CLAUDE_TOKEN_LIMIT:-0}" -gt 0 ] 2>/dev/null; then
-      rem5="$(jq -n --argjson c "$cur5" --argjson m "$CLAUDE_TOKEN_LIMIT" '([100-($c*100/$m),0]|max)|floor')"
+    # 5h: current active block cost
+    c5="$(printf '%s' "$json" | jq '[.blocks[]|select(.isActive==true)|.costUSD]|first // 0' 2>/dev/null)"
+    if [ -n "${c5:-}" ] && [ "${CLAUDE_5H_COST_LIMIT:-0}" -gt 0 ] 2>/dev/null; then
+      rem5="$(jq -n --argjson c "$c5" --argjson m "$CLAUDE_5H_COST_LIMIT" '([100-($c*100/$m),0]|max)|floor')"
       seg+=" $(color "$rem5")${rem5}%#[default]"
     fi
-    # weekly: trailing 7 days of block tokens
+    # weekly: trailing 7 days of block cost
     now="$(date +%s)"
-    cur7="$(printf '%s' "$json" | jq --argjson now "$now" \
-            '[.blocks[]|select(.isGap//false|not)|select((.startTime|sub("\\.[0-9]+Z$";"Z")|fromdateiso8601) >= ($now-604800))|.totalTokens]|add // 0' 2>/dev/null)"
-    if [ -n "${cur7:-}" ] && [ "${CLAUDE_WEEKLY_TOKEN_LIMIT:-0}" -gt 0 ] 2>/dev/null; then
-      rem7="$(jq -n --argjson c "$cur7" --argjson m "$CLAUDE_WEEKLY_TOKEN_LIMIT" '([100-($c*100/$m),0]|max)|floor')"
+    c7="$(printf '%s' "$json" | jq --argjson now "$now" \
+          '[.blocks[]|select(.isGap//false|not)|select((.startTime|sub("\\.[0-9]+Z$";"Z")|fromdateiso8601) >= ($now-604800))|.costUSD]|add // 0' 2>/dev/null)"
+    if [ -n "${c7:-}" ] && [ "${CLAUDE_WEEK_COST_LIMIT:-0}" -gt 0 ] 2>/dev/null; then
+      rem7="$(jq -n --argjson c "$c7" --argjson m "$CLAUDE_WEEK_COST_LIMIT" '([100-($c*100/$m),0]|max)|floor')"
       seg+=" w$(color "$rem7")${rem7}%#[default]"
     fi
     [ -n "$seg" ] && out+="#[fg=colour215]cc#[default]${seg}"
