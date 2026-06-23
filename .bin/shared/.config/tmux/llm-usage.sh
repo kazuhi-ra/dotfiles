@@ -23,11 +23,16 @@ CCUSAGE="$(command -v ccusage 2>/dev/null || echo "$HOME/.anyenv/envs/nodenv/shi
 # raw token counts (which are ~97% cache-read and drift non-linearly).
 # No per-plan setting exists; calibrate empirically.
 # Re-calibrate when it drifts:  cap = <ccusage costUSD> / (used_fraction from /usage)
-#   5h  : active block costUSD        / (5h used %)
-#   week: trailing-7d sum of costUSD  / (weekly used %)
-# Calibrated 2026-06-23 against /usage: 5h=22% used, week=35% used.
-CLAUDE_5H_COST_LIMIT="${CLAUDE_5H_COST_LIMIT:-335}"
-CLAUDE_WEEK_COST_LIMIT="${CLAUDE_WEEK_COST_LIMIT:-10323}"
+#   5h  : active block costUSD              / (5h used %)
+#   week: costUSD since the weekly reset    / (weekly used %)
+# 5h: fit over /usage points 22/35/53% used (origin slope $3.25/%) -> $325.
+# week: must use the FIXED reset window, NOT trailing-7d (which drifts because old
+#       days fall off). Calibrated 2026-06-23: $516.9 since reset @ 41% used.
+CLAUDE_5H_COST_LIMIT="${CLAUDE_5H_COST_LIMIT:-325}"
+CLAUDE_WEEK_COST_LIMIT="${CLAUDE_WEEK_COST_LIMIT:-1261}"
+# A known weekly-reset instant (2026-06-29 19:00 JST); the limit resets every 7
+# days from here, so any past/future reset is this ± k*7d. Used to find week start.
+CLAUDE_WEEK_ANCHOR="${CLAUDE_WEEK_ANCHOR:-1782727200}"
 
 # remaining% -> tmux fg color markup (green / yellow / red)
 color() {
@@ -51,10 +56,15 @@ compute() {
       rem5="$(jq -n --argjson c "$c5" --argjson m "$CLAUDE_5H_COST_LIMIT" '([100-($c*100/$m),0]|max)|floor')"
       seg+=" $(color "$rem5")${rem5}%#[default]"
     fi
-    # weekly: trailing 7 days of block cost
+    # weekly: cost since the current fixed weekly window's start. The window
+    # resets every 7 days from CLAUDE_WEEK_ANCHOR; floor (now-anchor)/7d to find it.
     now="$(date +%s)"
-    c7="$(printf '%s' "$json" | jq --argjson now "$now" \
-          '[.blocks[]|select(.isGap//false|not)|select((.startTime|sub("\\.[0-9]+Z$";"Z")|fromdateiso8601) >= ($now-604800))|.costUSD]|add // 0' 2>/dev/null)"
+    local diff k wkstart
+    diff=$(( now - CLAUDE_WEEK_ANCHOR ))
+    if [ "$diff" -ge 0 ]; then k=$(( diff / 604800 )); else k=$(( (diff - 604799) / 604800 )); fi
+    wkstart=$(( CLAUDE_WEEK_ANCHOR + k * 604800 ))
+    c7="$(printf '%s' "$json" | jq --argjson s "$wkstart" \
+          '[.blocks[]|select(.isGap//false|not)|select((.startTime|sub("\\.[0-9]+Z$";"Z")|fromdateiso8601) >= $s)|.costUSD]|add // 0' 2>/dev/null)"
     if [ -n "${c7:-}" ] && [ "${CLAUDE_WEEK_COST_LIMIT:-0}" -gt 0 ] 2>/dev/null; then
       rem7="$(jq -n --argjson c "$c7" --argjson m "$CLAUDE_WEEK_COST_LIMIT" '([100-($c*100/$m),0]|max)|floor')"
       seg+=" w$(color "$rem7")${rem7}%#[default]"
