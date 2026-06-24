@@ -56,7 +56,7 @@ compute() {
   now="$(date +%s)"
 
   # --- claude: ccusage cost (USD) for active 5h block + weekly window, vs caps ---
-  local json c5 rem5 bstart fa reset5 c7 rem7 seg diff k wkstart
+  local json c5 rem5 reset5 c7 rem7 seg diff k wkstart
   json="$("$CCUSAGE" blocks --json 2>/dev/null)"
   if [ -n "$json" ]; then
     seg=""
@@ -66,19 +66,22 @@ compute() {
     if [ -n "${c5:-}" ] && [ "${CLAUDE_5H_COST_LIMIT:-0}" -gt 0 ] 2>/dev/null; then
       rem5="$(jq -n --argjson c "$c5" --argjson m "$CLAUDE_5H_COST_LIMIT" '([100-($c*100/$m),0]|max)|floor')"
       seg+=" $(color "$rem5")${rem5}%#[default]"
-      # 5h reset = first activity in the block + 5h. ccusage floors the block start
-      # to the hour (so its endTime runs up to ~1h early); derive the real first
-      # activity from raw jsonl timestamps instead. Residual vs /usage is ~minutes.
-      bstart="$(printf '%s' "$json" | jq -r 'first(.blocks[]|select(.isActive).startTime) // "" | if .=="" then "" else (sub("\\.[0-9]+Z$";"Z")|fromdateiso8601|tostring) end' 2>/dev/null)"
-      reset5=""
-      if [ -n "$bstart" ]; then
-        fa="$(find "$HOME/.claude/projects" -name '*.jsonl' -mmin -360 -print0 2>/dev/null | xargs -0 cat 2>/dev/null \
-              | jq -rR --argjson b "$bstart" 'fromjson? | .timestamp // empty | sub("\\.[0-9]+Z$";"Z") | fromdateiso8601 | select(. >= $b)' 2>/dev/null \
-              | sort -n | head -1)"
-        [ -n "$fa" ] && reset5=$(( fa + 18000 ))
-      fi
-      # fall back to ccusage block endTime if first activity could not be found
-      [ -z "$reset5" ] && reset5="$(printf '%s' "$json" | jq -r 'first(.blocks[]|select(.isActive).endTime) // "" | if .=="" then "" else (sub("\\.[0-9]+Z$";"Z")|fromdateiso8601|tostring) end' 2>/dev/null)"
+      # 5h reset (Claude's model): each window starts at the first use after the
+      # previous reset and lasts exactly 5h. Rebuild the chain from jsonl activity:
+      # origin = first activity after the last >5h idle gap, then re-anchor every
+      # next window to the first activity at/after the prior window's end.
+      # (Residual vs /usage is a few min: local logs lag the server window start.)
+      reset5="$(find "$HOME/.claude/projects" -name '*.jsonl' -mmin -600 -print0 2>/dev/null | xargs -0 cat 2>/dev/null \
+        | jq -rR 'fromjson? | .timestamp // empty | sub("\\.[0-9]+Z$";"Z") | fromdateiso8601' 2>/dev/null \
+        | jq -rs --argjson now "$now" '
+            (sort|unique) as $t
+            | if ($t|length)==0 then empty
+              else (reduce range(1;($t|length)) as $i (0; if ($t[$i]-$t[$i-1])>18000 then $i else . end)) as $oi
+                | { s: $t[$oi] }
+                | until( (.s+18000) > $now or (.s as $e | [$t[]|select(. >= ($e+18000))]|length)==0;
+                         .s as $e | .s = ([$t[]|select(. >= ($e+18000))]|min) )
+                | (.s+18000)|tostring
+              end' 2>/dev/null)"
       [ -n "$reset5" ] && [ "$(( reset5 - now ))" -gt 0 ] && seg+="#[fg=colour245] $(fmt_eta $(( reset5 - now )))#[default]"
     fi
     # weekly: cost since the current fixed weekly window's start. The window
