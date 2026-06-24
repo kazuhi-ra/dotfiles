@@ -26,10 +26,11 @@ CCUSAGE="$(command -v ccusage 2>/dev/null || echo "$HOME/.anyenv/envs/nodenv/shi
 #   5h  : active block costUSD              / (5h used %)
 #   week: costUSD since the weekly reset    / (weekly used %)
 # 5h: fit over /usage points 22/35/53% used (origin slope $3.25/%) -> $325.
-# week: must use the FIXED reset window, NOT trailing-7d (which drifts because old
-#       days fall off). Calibrated 2026-06-23: $516.9 since reset @ 41% used.
+# week: must use the FIXED reset window, NOT trailing-7d (which drifts as old days
+#       fall off). Least-squares over 41/72/90% used ($517/$926/$1263 since reset)
+#       -> $1347. Cost is mildly convex vs the real %, so expect up to ~4pt error.
 CLAUDE_5H_COST_LIMIT="${CLAUDE_5H_COST_LIMIT:-325}"
-CLAUDE_WEEK_COST_LIMIT="${CLAUDE_WEEK_COST_LIMIT:-1261}"
+CLAUDE_WEEK_COST_LIMIT="${CLAUDE_WEEK_COST_LIMIT:-1347}"
 # A known weekly-reset instant (2026-06-29 19:00 JST); the limit resets every 7
 # days from here, so any past/future reset is this ± k*7d. Used to find week start.
 CLAUDE_WEEK_ANCHOR="${CLAUDE_WEEK_ANCHOR:-1782727200}"
