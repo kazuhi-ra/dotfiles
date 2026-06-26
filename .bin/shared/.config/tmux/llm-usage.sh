@@ -37,8 +37,8 @@ CLAUDE_WEEK_ANCHOR="${CLAUDE_WEEK_ANCHOR:-1782727200}"
 
 # remaining% -> tmux fg color markup (green / yellow / red)
 color() {
-  if   [ "$1" -ge 50 ]; then printf '#[fg=colour114]'
-  elif [ "$1" -ge 20 ]; then printf '#[fg=colour179]'
+  if   [ "$1" -ge 30 ]; then printf '#[fg=colour114]'
+  elif [ "$1" -ge 10 ]; then printf '#[fg=colour179]'
   else                       printf '#[fg=colour203]'
   fi
 }
