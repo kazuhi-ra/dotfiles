@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
 ########################## anyenv ##########################
 
 if [ "$(which anyenv)" = "" ]; then
@@ -31,6 +33,8 @@ if [ "$(which node)" = "" ]; then
 	nodenv install 20.10.0
 	nodenv global 20.10.0
 fi
+
+xargs npm install -g <"$SCRIPT_DIR/npm_list"
 
 if [ "$(which ruby)" = "" ]; then
 	rbenv install 3.3.6

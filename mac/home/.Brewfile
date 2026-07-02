@@ -64,11 +64,3 @@ cask "kindle"
 cask "slack"
 cask "visual-studio-code"
 cask "wezterm"
-
-# npm のグローバルパッケージ(nodenv で node を入れたあとに有効)。
-# ローカル開発リンク (@turnbox/*) は載せない
-npm "@anthropic-ai/claude-code"
-npm "appium"
-npm "ccusage"
-npm "corepack"
-npm "pnpm"
