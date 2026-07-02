@@ -21,3 +21,6 @@ export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 
 export EDITOR=nvim
+
+# zmm local commands
+export PATH="$HOME/.local/bin:$PATH"
