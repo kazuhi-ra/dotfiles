@@ -1,0 +1,27 @@
+#!/bin/bash
+# 秘密の混入をコミット前にブロックする(最後の防衛線)。
+# ./init.sh が core.hooksPath でこのディレクトリを有効化する。
+set -u
+
+status=0
+
+# git 管理外であるべき *.local が staged されていたら拒否
+staged_local="$(git diff --cached --name-only | grep -E '\.local(\.|/|$)' || true)"
+if [ -n "$staged_local" ]; then
+  echo "ERROR: git 管理外であるべき *.local が staged されています:" >&2
+  echo "$staged_local" >&2
+  status=1
+fi
+
+# 秘密鍵らしき内容が staged されていたら拒否
+# (文字クラスで書いているのは、このフック自身をコミットするとき
+#  パターンが自分にマッチしてしまうのを防ぐため)
+if git diff --cached | grep '^+' | grep -Eq -- "-----BEGIN [A-Z ]*PRIVATE KEY-----"; then
+  echo "ERROR: 秘密鍵らしき内容が staged されています。" >&2
+  status=1
+fi
+
+if [ "$status" -ne 0 ]; then
+  echo "コミットを中止しました。本当に意図したものであれば --no-verify で回避できます。" >&2
+fi
+exit "$status"

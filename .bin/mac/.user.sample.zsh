@@ -1,3 +1,0 @@
-function unko() {
-  echo unko
-}

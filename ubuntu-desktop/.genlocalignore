@@ -1,0 +1,5 @@
+# ローカル版 (*.local) を作らないもの。パスはこのディレクトリからの相対で書く。
+# ディレクトリを書くと配下すべてが対象。# 以降はコメント。
+
+home/.config/systemd    # unit はファイル名固定。上書きは systemd の drop-in で
+home/.config/copyq      # GUI が生成する設定

@@ -1,15 +1,14 @@
-.bin/*/.ssh/known_hosts*
-.bin/*/.ssh/*.pub
-.bin/*/.ssh/github
-.bin/*/.config/ghc/ghci_history
-.bin/*/.config/nvim
-.bin/*/.config/DMM
-.bin/*/.config/ghc
-.bin/*/.config/iterm2
-.bin/*/.user.zsh
-.bin/*/.config/anyenv
+# このマシンだけの設定・秘密は「ファイル名に .local を含める」規約(README 参照)。
+# 生成は ./genlocal.sh、コミットへの混入は pre-commit フックが検査する。
+*.local
+*.local.*
+
+# --- 以下は機械が生成する作業ファイル ---
+
+# karabiner が symlink 先(リポジトリ内)に書き込むバックアップ
+mac/home/.config/karabiner/automatic_backups/
+
+# install スクリプトが cwd に落とすアーカイブ(ルート直下に固定。
+# 固定しないと .config/lazygit ディレクトリ自体にマッチしてしまう)
 /lazygit*
-wezterm-*
-.rubocop.yml
-aws
-/.bin/mac/.config/karabiner/automatic_backups
+/wezterm-*

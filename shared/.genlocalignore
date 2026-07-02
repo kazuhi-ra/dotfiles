@@ -1,0 +1,5 @@
+# ローカル版 (*.local) を作らないもの。パスはこのディレクトリからの相対で書く。
+# ディレクトリを書くと配下すべてが対象。# 以降はコメント。
+
+home/.config/neofetch/images    # バイナリ
+vscode                          # settings.json に include の仕組みがない
