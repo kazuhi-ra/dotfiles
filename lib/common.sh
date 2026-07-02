@@ -1,6 +1,4 @@
-# マシンプロファイルの解決を一元管理する。
-# 判定結果は初回に PROFILE_FILE へ保存し、以後はそれを正とする
-# (ホスト名判定のドリフトを防ぐため、判定ロジックはこのファイルにしか書かない)。
+# マシン判定はここにのみ書く。初回の結果を PROFILE_FILE に保存し、以後はそれが正
 
 PROFILE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/machine"
 

@@ -1,7 +1,5 @@
 #!/bin/bash
-# エントリポイント②: 本セットアップ(ssh 設定後)。
-# 各マシンは install_packages.sh / languages.sh / editor.sh を実装している前提
-# (規約の充足は ./check.sh で確認できる)。
+# 本セットアップ(ssh 設定後)
 set -eu
 
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"

@@ -36,7 +36,6 @@ plus-emph-style = normal "#115aa3"
 plus-style = syntax "#194048"
 line-numbers-plus-style = "#00A0A0"
 
-# マシンローカルな設定(仕事用の user.email など)は <machine>/home/.gitconfig.local に書く
-# (git 管理外。./genlocal.sh が生成し、~/.gitconfig.local に link される)。
+# マシンローカル設定は <machine>/home/.gitconfig.local に(git 管理外)
 [include]
 path = ~/.gitconfig.local

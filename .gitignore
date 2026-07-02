@@ -1,14 +1,10 @@
-# このマシンだけの設定・秘密は「ファイル名に .local を含める」規約(README 参照)。
-# 生成は ./genlocal.sh、コミットへの混入は pre-commit フックが検査する。
+# マシンローカル・秘密は *.local 規約(README 参照)
 *.local
 *.local.*
 
-# --- 以下は機械が生成する作業ファイル ---
-
-# karabiner が symlink 先(リポジトリ内)に書き込むバックアップ
+# karabiner が symlink 越しに書き込むバックアップ
 mac/home/.config/karabiner/automatic_backups/
 
-# install スクリプトが cwd に落とすアーカイブ(ルート直下に固定。
-# 固定しないと .config/lazygit ディレクトリ自体にマッチしてしまう)
+# install スクリプトが落とすアーカイブ(/ を外すと .config/lazygit に当たる)
 /lazygit*
 /wezterm-*

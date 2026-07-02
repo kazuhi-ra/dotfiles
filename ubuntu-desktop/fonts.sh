@@ -1,6 +1,5 @@
 #!/bin/bash
-# HackGen フォントを GitHub Release から取得して ~/.fonts に配置する。
-# (フォントの .ttf 実体はリポジトリにコミットしない)
+# HackGen を GitHub Release から ~/.fonts に取得する
 set -eu
 
 HACKGEN_VERSION="v2.9.0"

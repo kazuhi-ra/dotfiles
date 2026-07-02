@@ -93,7 +93,7 @@ zplug load
 
 source $HOME/.cargo/env
 
-# このマシンだけの設定(git 管理外)。./genlocal.sh が生成する
+# マシンローカル設定(git 管理外)
 if [ -f $HOME/.zshrc.local ]; then
   source $HOME/.zshrc.local
 fi

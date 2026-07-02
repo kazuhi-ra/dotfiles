@@ -1,7 +1,5 @@
 #!/bin/bash
-# 各マシンディレクトリが規約(必須スクリプト)を満たしているか検査する。
-# マシンの発見も規約ベース: 「home/ を持つトップレベルディレクトリ(shared を除く)」。
-# 新しいマシンを追加したときや、スクリプトをリネームしたときに実行する。
+# 各マシンが規約の必須スクリプトを備えているか検査する
 set -u
 
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -17,8 +15,7 @@ for machine_dir in "$ROOT_DIR"/*/; do
   found=$((found + 1))
 
   for f in "${REQUIRED[@]}"; do
-    path="$ROOT_DIR/$machine/$f"
-    if [ ! -x "$path" ]; then
+    if [ ! -x "$ROOT_DIR/$machine/$f" ]; then
       echo "NG: $machine/$f がないか、実行権限がありません"
       status=1
     fi

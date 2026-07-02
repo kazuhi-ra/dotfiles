@@ -1,25 +1,15 @@
 #!/bin/bash
-# ローカル版ファイル(git 管理外の *.local)を生成する。
-# 既に存在する場合は何もしない(破壊しない)ので、何度実行しても安全。
-#
-# 使い方:
-#   ./genlocal.sh                  # このマシンの規定の拡張ポイントを生成
-#   ./genlocal.sh <repo-file>...   # 指定した公開ファイルのローカル版 <file>.local を生成
-#
-# 例: shared/home/.config/tmux/tmux.conf を追加したあと、マシン固有の
-#     上書きを書きたくなったら ./genlocal.sh shared/home/.config/tmux/tmux.conf
+# git 管理外の *.local ファイルを生成する。既存ファイルには触れない。
+# 使い方: ./genlocal.sh [repo-file...]  (引数なしなら規定の拡張ポイント)
 set -eu
 
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # shellcheck source=lib/common.sh
 source "$ROOT_DIR/lib/common.sh"
 
-# ローカル版を作っても意味がないもの(.local を読み込む仕組みがない・機械生成など)は、
-# 各層のディレクトリ直下の .genlocalignore に列挙する(例: mac/.genlocalignore)。
-# 書式: 1 行 1 パス(その層からの相対)、ディレクトリなら配下すべて、# 以降はコメント。
+# 除外リストは各層直下の .genlocalignore
 IGNORE_FILE=".genlocalignore"
 
-# $ROOT_DIR からの相対パスに正規化する
 rel_path() {
   local abs
   abs="$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
@@ -34,8 +24,8 @@ is_blacklisted() {
 
   local line entry
   while IFS= read -r line; do
-    line="${line%%#*}"                            # コメントを除去
-    line="${line#"${line%%[![:space:]]*}"}"       # 前後の空白を除去
+    line="${line%%#*}"
+    line="${line#"${line%%[![:space:]]*}"}"
     line="${line%"${line##*[![:space:]]}"}"
     [ -z "$line" ] && continue
 
@@ -47,8 +37,6 @@ is_blacklisted() {
   return 1
 }
 
-# 全マシンで必ず存在してほしい拡張ポイント。
-# 新しい拡張ポイントを規約に加えたらここに足す。
 default_targets() {
   local machine
   machine="$(resolve_machine)"
@@ -66,14 +54,10 @@ generate() {
   mkdir -p "$(dirname "$target")"
   case "$target" in
   *.json)
-    # コメントを書けないので空のオブジェクトだけ置く
     printf '{}\n' >"$target"
     ;;
   *)
-    cat >"$target" <<EOF
-# $(basename "$target") — このマシンだけの設定(*.local は git 管理外)
-# 公開したくないもの(トークン、仕事用の設定など)はここに書く。
-EOF
+    echo "# $(basename "$target") — このマシンだけの設定(git 管理外)" >"$target"
     ;;
   esac
   echo "created: $target"
@@ -96,7 +80,7 @@ else
       continue
     fi
     if is_blacklisted "$(rel_path "$src")"; then
-      echo "skip (ローカル版を作らない規約のファイルです): $src"
+      echo "skip (.genlocalignore の対象です): $src"
       continue
     fi
     generate "${src}.local"

@@ -3,8 +3,6 @@ Description=xremap
 
 [Service]
 Restart=always
-# %h = ホームディレクトリ。設定は link 済みの ~/.config/xremap/config.yml を参照する
-# (リポジトリの絶対パスやユーザー名をハードコードしない)
 ExecStart=%h/.cargo/bin/xremap %h/.config/xremap/config.yml
 Environment="DISPLAY=:0"
 
