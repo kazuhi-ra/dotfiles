@@ -45,6 +45,7 @@ brew "tree"
 brew "uv"
 brew "vips"
 brew "wget"
+brew "xcodes"
 brew "zplug"
 
 cask "1password"

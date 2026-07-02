@@ -44,10 +44,15 @@ if ! goenv versions --bare | grep -qx "$GO_VERSION"; then
   goenv global "$GO_VERSION"
 fi
 
-xargs npm install -g <"$SCRIPT_DIR/npm_list"
+# 導入済みの再インストールはしない(実行中の CLI を上書きしないため)
+while IFS= read -r pkg; do
+  npm ls -g --depth=0 "$pkg" >/dev/null 2>&1 || npm install -g "$pkg"
+done <"$SCRIPT_DIR/npm_list"
 
 ########################## rust ##########################
 
+export PATH="$HOME/.cargo/bin:$PATH"
 if ! command -v cargo >/dev/null; then
-  rustup-init -y
+  # brew の rustup の初期化手順。toolchain と ~/.cargo/bin の proxy を作る
+  rustup default stable
 fi
