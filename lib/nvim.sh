@@ -8,7 +8,7 @@ USER_REPO="kazuhi-ra/nvim-user-v6"
 ghq get "git@github.com:${USER_REPO}.git"
 
 # nvimをbuild
-if [ "$(which nvim)" = "" ]; then
+if ! command -v nvim >/dev/null; then
 	cd "$(ghq list --full-path | grep --color=never -E "${NVIM_REPO}")" || exit
 	make CMAKE_BUILD_TYPE=RelWithDebInfo
 	sudo make install

@@ -1,27 +1,29 @@
 #!/bin/bash
 
+export PATH="$HOME/.cargo/bin:$HOME/go/bin:$PATH"
+
 echo "starship"
-if [ "$(which starship)" = "" ]; then
+if ! command -v starship >/dev/null; then
 	curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi
 
 echo "ghq"
-if [ "$(which ghq)" = "" ]; then
+if ! command -v ghq >/dev/null; then
 	go install github.com/x-motemen/ghq@latest
 fi
 
 echo "lazydocker"
-if [ "$(which lazydocker)" = "" ]; then
-	go install github.com/jesseduffield/lazydocker@v0.23.0
+if ! command -v lazydocker >/dev/null; then
+	go install github.com/jesseduffield/lazydocker@latest
 fi
 
 echo "docker"
-if [ "$(which docker)" = "" ]; then
+if ! command -v docker >/dev/null; then
 	dockerd-rootless-setuptool.sh install
 fi
 
 echo "lazygit"
-if [ "$(which lazygit)" = "" ]; then
+if ! command -v lazygit >/dev/null; then
 	LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 	curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 	tar xf lazygit.tar.gz lazygit
@@ -29,43 +31,43 @@ if [ "$(which lazygit)" = "" ]; then
 fi
 
 echo "wezterm"
-if [ "$(which wezterm)" = "" ]; then
-	curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Ubuntu22.04.deb
-	sudo apt install -y ./wezterm-20240203-110809-5046fc22.Ubuntu22.04.deb
+if ! command -v wezterm >/dev/null; then
+	WEZTERM_VERSION=$(curl -s "https://api.github.com/repos/wez/wezterm/releases/latest" | grep -Po '"tag_name": "\K[^"]*')
+	UBUNTU_VERSION=$(. /etc/os-release && echo "$VERSION_ID")
+	curl -LO "https://github.com/wez/wezterm/releases/download/${WEZTERM_VERSION}/wezterm-${WEZTERM_VERSION}.Ubuntu${UBUNTU_VERSION}.deb"
+	sudo apt install -y "./wezterm-${WEZTERM_VERSION}.Ubuntu${UBUNTU_VERSION}.deb"
 fi
 
 echo "tmux"
-if [ "$(which tmux)" = "" ]; then
+if ! command -v tmux >/dev/null; then
 	ghq get -shallow git@github.com:tmux/tmux.git
 	cd "$(ghq list --full-path | grep --color=never -E tmux/tmux)" || exit
-	cd tmux
 	sh autogen.sh
 	./configure --enable-sixel --prefix=/usr/local && make
 	sudo make install
 fi
 
 echo "anyenv"
-if [ "$(which anyenv)" = "" ]; then
+if [ ! -d "$HOME/.anyenv" ]; then
 	git clone https://github.com/anyenv/anyenv ~/.anyenv
-	cd ~/.anyenv || exit
 fi
 
 echo "rustup"
-if [ "$(which rustup)" = "" ]; then
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+if ! command -v rustup >/dev/null; then
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
 
 echo "delta"
-if [ "$(which delta)" = "" ]; then
+if ! command -v delta >/dev/null; then
 	cargo install git-delta
 fi
 
 echo "xremap"
-if [ "$(which xremap)" = "" ]; then
+if ! command -v xremap >/dev/null; then
 	cargo install xremap --features x11
 fi
 
-echo "ZPLUG"
-if [ "$ZPLUG_HOME" = "" ]; then
+echo "zplug"
+if [ ! -d "$HOME/.zplug" ]; then
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi

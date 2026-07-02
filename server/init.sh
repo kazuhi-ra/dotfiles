@@ -3,7 +3,7 @@
 sudo apt update
 sudo apt upgrade
 
-if [ "$(which docker)" = "" ]; then
+if ! command -v docker >/dev/null; then
 	# Add Docker's official GPG key:
 	sudo apt-get install ca-certificates curl gnupg
 	sudo install -m 0755 -d /etc/apt/keyrings

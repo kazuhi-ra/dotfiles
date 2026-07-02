@@ -11,7 +11,7 @@ echo 'KERNEL=="uinput", GROUP="input", TAG+="uaccess"' | sudo tee /etc/udev/rule
 sudo udevadm control --reload-rules && sudo udevadm trigger
 
 # 1password
-if [ "$(which op)" = "" ]; then
+if ! command -v op >/dev/null; then
 	curl -sS https://downloads.1password.com/linux/keys/1password.asc |
 		sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
 	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" |
@@ -25,7 +25,7 @@ if [ "$(which op)" = "" ]; then
 fi
 
 # to install the newer version go
-if [ "$(which go)" = "" ]; then
+if ! command -v go >/dev/null; then
 	sudo add-apt-repository ppa:longsleep/golang-backports
 fi
 

@@ -1,5 +1,5 @@
 # Homebrew
-if [ "$(which brew)" = "brew not found" ]; then
+if ! command -v brew >/dev/null; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 

@@ -24,7 +24,7 @@ eval "$(anyenv init -)"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
 # for docker rootless mode
-export PATH=/home/kazuhira/bin:$PATH
-export DOCKER_HOST=unix:///run/user/1000/docker.sock
+export PATH="$HOME/bin:$PATH"
+export DOCKER_HOST="unix://${XDG_RUNTIME_DIR:-/run/user/$UID}/docker.sock"
 
 xset r rate 225 30
