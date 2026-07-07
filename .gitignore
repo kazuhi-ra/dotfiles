@@ -8,3 +8,7 @@ mac/home/.config/karabiner/automatic_backups/
 # install スクリプトが落とすアーカイブ(/ を外すと .config/lazygit に当たる)
 /lazygit*
 /wezterm-*
+
+# python
+__pycache__/
+*.pyc
