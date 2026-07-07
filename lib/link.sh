@@ -6,25 +6,47 @@ MACHINE="${1:?usage: link.sh <machine>}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
+link_path() {
+  local source="$1"
+  local target="$2"
+  local child target_link
+
+  if [ -d "$source" ]; then
+    # ディレクトリは実体を作って中身だけ link し、~/.ssh や ~/.config 等で
+    # リポジトリ外のファイルと共存できるようにする
+    if [ -L "$target" ]; then
+      target_link="$(readlink "$target")"
+      case "$target_link" in
+        "$ROOT_DIR"/*) ;;
+        *)
+          echo "Refusing to replace non-dotfiles symlink: $target -> $target_link" >&2
+          exit 1
+          ;;
+      esac
+      unlink "$target"
+    fi
+    mkdir -p "$target"
+    for child in "$source"/* "$source"/.[!.]* "$source"/..?*; do
+      [ -e "$child" ] || [ -L "$child" ] || continue
+      link_path "$child" "$target/$(basename "$child")"
+    done
+  else
+    if [ -L "$target" ]; then
+      unlink "$target"
+    fi
+    ln -fnsv "$source" "$target"
+  fi
+}
+
 link_layer() {
   local layer="$1"
   echo "Linking layer: $layer"
 
-  local dotfile base child
-  for dotfile in "$layer"/.??*; do
-    [ -e "$dotfile" ] || continue
+  local dotfile base
+  for dotfile in "$layer"/.[!.]* "$layer"/..?*; do
+    [ -e "$dotfile" ] || [ -L "$dotfile" ] || continue
     base="$(basename "$dotfile")"
-
-    if [ -d "$dotfile" ]; then
-      # ディレクトリは実体を作って中身だけ link し、~/.ssh 等で
-      # リポジトリ外のファイルと共存できるようにする
-      mkdir -p "$HOME/$base"
-      for child in "$dotfile"/*; do
-        ln -fnsv "$child" "$HOME/$base/$(basename "$child")"
-      done
-    else
-      ln -fnsv "$dotfile" "$HOME/$base"
-    fi
+    link_path "$dotfile" "$HOME/$base"
   done
 }
 
