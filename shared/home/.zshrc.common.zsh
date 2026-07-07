@@ -100,7 +100,7 @@ add-zsh-hook precmd herdr-rename-tab-for-prompt
 
 # ghq
 function peco-ghq-look() {
-  local project dir repository workspace workspace_id created pane_id tab_id response pane current_label
+  local project dir repository workspace workspace_id response current_label created pane pane_id
   project=$(ghq list -p | peco --prompt='Project >')
 
   if [[ $project == "" ]]; then
@@ -133,15 +133,12 @@ function peco-ghq-look() {
       fi
     fi
 
+    # 新規作成/再利用した workspace の pane を repo dir へ移す（nvim 等は起動しない）。
     if [[ -n ${created:-} ]]; then
       pane=$(herdr pane list --workspace "$workspace_id" \
         | jq -c '.result.panes | (map(select(.focused == true))[0] // .[0]) // empty')
       pane_id=$(printf '%s' "$pane" | jq -r '.pane_id // empty')
-      tab_id=$(printf '%s' "$pane" | jq -r '.tab_id // empty')
-      if [[ -n $pane_id ]]; then
-        herdr pane run "$pane_id" "cd ${(q)dir} && nvim" >/dev/null
-        [[ -n $tab_id ]] && herdr tab rename "$tab_id" "nvim" >/dev/null 2>&1
-      fi
+      [[ -n $pane_id ]] && herdr pane run "$pane_id" "cd ${(q)dir}" >/dev/null
     fi
   else
     cd $dir
@@ -149,6 +146,42 @@ function peco-ghq-look() {
 }
 zle -N peco-ghq-look
 bindkey '^G' peco-ghq-look
+
+# dev: 現在の Herdr workspace に開発用の 4 tab(nvim / claude / codex / zsh)を作る。
+#   実行 tab が余らないよう、dev を実行したこの tab を先頭の nvim tab として再利用し、
+#   claude / codex / zsh を続けて新規作成する（順番: nvim, claude, codex, zsh）。
+#   zsh tab は 左 | 右上/右下 の 3 pane。
+function dev() {
+  [[ -n ${HERDR_ENV:-} && -n ${HERDR_WORKSPACE_ID:-} ]] || {
+    echo "dev: Herdr の workspace 内で実行してください" >&2; return 1; }
+  command -v herdr >/dev/null && command -v jq >/dev/null || {
+    echo "dev: herdr と jq が必要です" >&2; return 1; }
+
+  local ws="$HERDR_WORKSPACE_ID" cwd="$PWD"
+  local spec label cmd resp pane right
+
+  # 現在の tab(dev を実行したこの tab)を nvim tab として再利用 → 先頭が nvim になる。
+  # nvim は現在の pane で起動する(nvim 終了時はシェルに戻る)。
+  [[ -n ${HERDR_PANE_ID:-} ]] && herdr pane run "$HERDR_PANE_ID" nvim >/dev/null
+
+  # claude / codex を新規 tab で作成(no-focus)。
+  for spec in "claude:claude" "codex:codex"; do
+    label=${spec%%:*}; cmd=${spec#*:}
+    resp=$(herdr tab create --workspace "$ws" --cwd "$cwd" --label "$label" --no-focus)
+    pane=$(printf '%s' "$resp" | jq -r '.result.root_pane.pane_id // empty')
+    [[ -n $pane ]] && herdr pane run "$pane" "$cmd" >/dev/null
+  done
+
+  # zsh tab(新規): 左 pane | 右 pane、さらに右を上下に分割 → 左 | (右上 / 右下)
+  resp=$(herdr tab create --workspace "$ws" --cwd "$cwd" --label zsh --no-focus)
+  pane=$(printf '%s' "$resp" | jq -r '.result.root_pane.pane_id // empty')
+  if [[ -n $pane ]]; then
+    right=$(herdr pane split "$pane" --direction right --cwd "$cwd" --no-focus \
+      | jq -r '.result.pane.pane_id // empty')
+    [[ -n $right ]] && herdr pane split "$right" --direction down --cwd "$cwd" --no-focus >/dev/null
+  fi
+  # nvim(現在 tab)に居るので focus 変更は不要。
+}
 
 
 eval "$(starship init zsh)"
