@@ -38,13 +38,9 @@ if ! command -v wezterm >/dev/null; then
 	sudo apt install -y "./wezterm-${WEZTERM_VERSION}.Ubuntu${UBUNTU_VERSION}.deb"
 fi
 
-echo "tmux"
-if ! command -v tmux >/dev/null; then
-	ghq get -shallow git@github.com:tmux/tmux.git
-	cd "$(ghq list --full-path | grep --color=never -E tmux/tmux)" || exit
-	sh autogen.sh
-	./configure --enable-sixel --prefix=/usr/local && make
-	sudo make install
+echo "herdr"
+if ! command -v herdr >/dev/null; then
+	curl -fsSL https://herdr.dev/install.sh | sh
 fi
 
 echo "anyenv"

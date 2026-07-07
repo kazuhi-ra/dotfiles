@@ -11,9 +11,9 @@ source $HOME/.zshrc.common.zsh
 
 alias d="docker"
 alias ld="lazydocker"
-alias r="tmux source-file ~/.config/tmux/tmux.conf && exec $SHELL -l"
-alias x="tmux"
-alias xx="tmux kill-server"
+alias r="herdr server reload-config && exec $SHELL -l"
+alias x="herdr"
+alias xx="herdr server stop"
 
 # anyenv
 eval "$(anyenv init -)"

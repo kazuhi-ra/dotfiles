@@ -6,6 +6,7 @@ cmake
 gettext
 git
 golang-go
+jq
 libevent-dev
 libncurses5-dev
 libreadline-dev
@@ -15,7 +16,6 @@ neofetch
 peco
 pkg-config
 ripgrep
-tmux
 tree
 unzip
 vim
