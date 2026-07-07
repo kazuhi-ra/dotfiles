@@ -62,6 +62,7 @@ prompt_new_tab_name = false
 mouse_capture = true
 confirm_close = true
 
+agent_panel_sort = "spaces"
 [ui.toast]
 delivery = "off"
 
