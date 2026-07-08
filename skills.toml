@@ -19,6 +19,10 @@ source = "ogulcancelik/herdr"
 source = "shokai/agent-skills"
 skill = "codex-consultation"
 
+[skills.subagent-consultation]
+source = "shokai/agent-skills"
+skill = "subagent-consultation"
+
 [skills.conversation-context-export]
 source = "shokai/agent-skills"
 skill = "conversation-context-export"
@@ -41,8 +45,10 @@ skills = [
   "unconventional-simplification",
 ]
 
+# subagent-consultation は「Codex が別の Codex(subagent) に相談する」物なので
+# codex 内でのみ意味を持つ。codex-consultation の codex->codex 版。
 [codex]
-skills = []
+skills = ["subagent-consultation"]
 
 # codex-consultation は「Claude が外部の Codex に相談する」物で、Codex 内では
 # 無意味(codex->codex になる。それは subagent-consultation)なので claude だけ。
