@@ -66,6 +66,10 @@ agent_panel_sort = "spaces"
 [ui.toast]
 delivery = "off"
 
+# Suppress the "copied to clipboard" toast on mouse selection.
+[ui.toast.clipboard]
+enabled = false
+
 [ui.sound]
 enabled = false
 
