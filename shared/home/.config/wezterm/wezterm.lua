@@ -84,7 +84,9 @@ return {
 		{ key = "RightArrow", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "LeftArrow", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "RightArrow", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
-		{ key = "s", mods = "CMD", action = shell("herdr server reload-config >/dev/null") },
+		-- Cmd+S: nvim(AstroNvim) の <Esc><leader>w = Save を叩く。herdr を経由して
+		-- pane(nvim) にそのまま渡る。reload-config は Cmd+R 側に集約。
+		{ key = "s", mods = "CMD", action = wezterm.action.SendString("\027 w") },
 		{ key = "r", mods = "CMD", action = shell("herdr server reload-config >/dev/null") },
 
 		-- workspace の作成, 移動
