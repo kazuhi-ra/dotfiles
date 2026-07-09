@@ -39,7 +39,7 @@ dotfiles/
 
 - `<machine>/home/.zshrc.local` — `.zshrc.common.zsh` の最後に source される
 - `<machine>/home/.gitconfig.local` — `.gitconfig` の include で読まれる
-- SSH 鍵は `github.local` のように命名する(`.ssh/config` が参照済み)
+- SSH 設定・鍵は `<machine>/home/.ssh/` に置き、このディレクトリ配下は git 管理しない
 
 上記 2 つは `./genlocal.sh` が生成する。任意のファイルは `./genlocal.sh <file>` で隣に
 `.local` を作れる(読み込む仕組みは公開側に書くこと)。除外は各層の `.genlocalignore`。
@@ -58,7 +58,7 @@ cd ~/workspace/github.com/kazuhi-ra/dotfiles && ./init.sh
 
 ubuntu-desktop は mozc に `ubuntu-desktop/mozc.txt` を import して再起動。
 
-1Password で SSH を設定(鍵は `<machine>/home/.ssh/github.local`、chmod 600)したら:
+1Password などで SSH を設定(設定・鍵は `<machine>/home/.ssh/` 配下、chmod 600)したら:
 
 ```sh
 ssh -T git@github.com

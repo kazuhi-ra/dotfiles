@@ -2,6 +2,9 @@
 *.local
 *.local.*
 
+# SSH 設定・鍵は git 管理しない
+**/home/.ssh/*
+
 # karabiner が symlink 越しに書き込むバックアップ
 mac/home/.config/karabiner/automatic_backups/
 
