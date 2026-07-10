@@ -13,6 +13,9 @@ for step in install_packages languages editor; do
   "$ROOT_DIR/$MACHINE/$step.sh"
 done
 
+# 別リポジトリ管理の実行可能ファイルを ~/.local/bin へ link
+"$ROOT_DIR/lib/link-bin.sh"
+
 # エージェント skill / MCP を各ツールへ配線（skills.toml / mcp.toml 駆動）
 if command -v python3 >/dev/null; then
   python3 "$ROOT_DIR/lib/link-skills.py"
